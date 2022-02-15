@@ -1,0 +1,50 @@
+project:
+  type: book
+
+book:
+  title: "An Instance-Based Account of Context Maintenance and Retrieval"
+  lang: "en"
+  execute: false
+  chapters:
+    - index.ipynb
+    - 00_Introduction.ipynb
+    - 01_Classic_CMR.ipynb
+    - 02_Instance_CMR.ipynb
+    - 03_Methods.ipynb
+    - 04_Baseline_Comparison.ipynb
+    - 05_Variable_List_Lengths.ipynb
+    - 06_Item_Repetitions.ipynb
+    - 07_Discussion.ipynb
+    - references.md
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+  pdf:
+    author: 
+      - |
+        | Jordan B. Gunn
+        | Cognition and Cognitive Neuroscience Program
+        | Vanderbilt University
+        | Nashville, TN 37235
+        | \texttt{jordan.gunn@vanderbilt.edu}
+      - |
+        | \textbf{Sean M. Polyn}
+        | Department of Psychological Sciences
+        | Vanderbilt University
+        | Nashville, TN 37235
+        | \texttt{sean.polyn@vanderbilt.edu}
+    header-includes: |
+      \usepackage{setspace}
+      \onehalfspacing
+      %\doublespacing
+      \usepackage{arxiv}
+    toc: false
+    keep-tex: true
+    echo: false
+    output: false
+    documentclass: article
+    #classoption:  12pt
