@@ -18,6 +18,7 @@ book:
     - references.md
 
 bibliography: references.bib
+csl: apa.csl
 
 format:
   html:
