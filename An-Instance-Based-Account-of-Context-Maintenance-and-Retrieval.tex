@@ -141,8 +141,8 @@ Nashville, TN 37235\\
 \begin{document}
 \maketitle
 
-In retrieved context accounts of memory search like the Context
-Maintenance and Retrieval (CMR) model (Polyn, Norman, and Kahana 2009),
+In retrieved-context accounts of memory search like the Context
+Maintenance and Retrieval (CMR) model (Polyn et al., 2009),
 representations of studied items in a free recall experiment are
 associated with states of an internal representation of temporal context
 that slowly evolves across the study period. These mechanisms enable
@@ -151,15 +151,15 @@ as the tendency for related items to be recalled successively. Retrieved
 context models tend to specify these dynamics in terms of a simplified
 neural network, as building a single prototypical pattern of
 associations between each item and context (and vice versa) across
-experience. By contrast, models of categorization and other memory
+experiences. By contrast, models of categorization and other memory
 phenomena have increasingly converged on instance-based architectures
-(Hintzman 1984) that conceptualize memory as a stack of trace vectors
+(Hintzman, 1984) that conceptualize memory as a stack of trace vectors
 that each represent discrete experiences and support recall through
 parallel, nonlinear activation based on similarity to a probe. To
-investigate the consequences of this distinction we present an
+investigate the consequences of this distinction, we present an
 instance-based specification of CMR that encodes associations between
 studied items and context by instantiating memory traces corresponding
-to each experience, and drives recall through context-based coactivation
+to each experience and drives recall through context-based coactivation
 of those traces. We analyze the model's ability to account for
 traditional phenomena that have been used as support for the original
 prototypical specification of CMR, evaluate conditions under which the
@@ -177,7 +177,7 @@ stored information relevant to a probe is often distributed across
 multiple learning episodes. To account for our ability to retrieve this
 information, models of memory search often specify some mechanism for
 abstraction -- selective generalization across recurrent features of
-past experience (Yee 2019). Abstraction involves identifying and
+past experience (Yee, 2019). Abstraction involves identifying and
 highlighting features common across experiential episodes while
 disregarding or suppressing reinstatement more idiosyncratic properties.
 Since this capacity is central to how memory systems retrieve relevant
@@ -190,15 +190,15 @@ Prototype-based models conceptualize abstraction as a process enacted
 during encoding; new experiences are conceived as updating memory
 representations to reflect prototypical features that are common across
 past experiences. Connectionist models such as the multilayer perceptron
-are typically examples of prototype-based models (Jamieson et al. 2018).
-Instead of being stored as separate records in memory, learning examples
-presented to a connectionist model each update a prototypical pattern of
-weights that eventually map memory probes to responses.
+are typically examples of prototype-based models (Jamieson et al.,
+2018). Instead of being stored as separate records in memory, learning
+examples presented to a connectionist model each update a prototypical
+pattern of weights that eventually map memory probes to responses.
 
 Instance-based models do store learning exampls as separate records in
 memory. The model architecture was originally identified to help
 understand how category learning might be possible without explicit
-storage of so-called abstract ideas (Hintzman 1984, 1986, 1988).
+storage of so-called abstract ideas (Hintzman, 1984, 1986, 1988).
 Instance-based models posit that memory encoding primarily involves
 accumulating a record of every experience as separate traces in memory.
 Abstraction over stored instances later occurs at retrieval rather than
@@ -216,29 +216,28 @@ Instance-based accounts of memory have faced scrutiny for implying that
 the number of stored instances in memory can increase without limit and
 are all contacted upon retrieval, respectively placing extraordinary
 capacity and processing demands on the human nervous system (e.g.,
-Kahana 2020). However, at the same time as instance-based models have
+Kahana, 2020). However, at the same time as instance-based models have
 been critiqued for their architectural lack of data compression at
 storage, the way abstractive representations exclude idiosyncratic
 features of individual learning episodes to reflect a center of tendency
 across them is similarly recurrently cited as a limitation of
 prototype-based models. In research on categorization for example,
-`exemplar-similarity' models (Nosofsky and Zaki 2002; Stanton, Nosofsky,
-and Zaki 2002) outperform comparable prototype-based models by
-representing categories as sets of stored instances paired with a
-process for comparison against probes. A related analysis extends these
-findings to also critique prototype-based accounts of semantic memory.
-Jamieson et al. (2018) found that because prototype-based distributional
-semantic models such as latent semantic analysis (Dumais 2004) and
-Word2Vec (Church 2017) ``collapse the many contexts in which a word
-occurs to a single best-fitting representation'', they lose the ability
-to represent rare senses of homonymous and polymsemous words.
-Consequently, prototype-based models exhibited measureably worse
-performance accounting for word similarity patterns in various natural
-language simulations compared to an instance-based account of semantic
-memory based on the MINERVA 2 multiple traces memory model (Hintzman
-1984). In the context of successes like these across diverse research
-conditions, instance-based accounts of memory have become increasingly
-prominent.
+`exemplar-similarity' models (Nosofsky \& Zaki, 2002; Stanton et al.,
+2002) outperform comparable prototype-based models by representing
+categories as sets of stored instances paired with a process for
+comparison against probes. A related analysis extends these findings to
+also critique prototype-based accounts of semantic memory. Jamieson et
+al. (2018) found that because prototype-based distributional semantic
+models such as latent semantic analysis (Dumais, 2004) and Word2Vec
+(Church, 2017) ``collapse the many contexts in which a word occurs to a
+single best-fitting representation'', they lose the ability to represent
+rare senses of homonymous and polymsemous words. Consequently,
+prototype-based models exhibited measureably worse performance
+accounting for word similarity patterns in various natural language
+simulations compared to an instance-based account of semantic memory
+based on the MINERVA 2 multiple traces memory model (Hintzman, 1984). In
+the context of successes like these across diverse research conditions,
+instance-based accounts of memory have become increasingly prominent.
 
 \hypertarget{models-of-free-recall-are-traditionally-prototype-based}{%
 \subsection{Models of Free Recall are Traditionally
@@ -255,16 +254,16 @@ the list as possible, in whatever order they come to mind. Since
 participants largely organize the course of retrieval themselves in the
 response phase of a free recall task, work by researchers to
 characterize the organization of responses measured under the paradigm
-(Postman 1971; Puff 1979) have provided important constraints on
+(Postman, 1971; Puff, 1979) have provided important constraints on
 accounts of the representations and mechanisms underlying search through
 memory to retrieve information.
 
 In particular, three consistent regularities across experiments have
 received especial emphasis in accounts of performance on the free recall
-task (Kahana 2020). The serial position effect identifies a nonlinear,
+task (Kahana, 2020). The serial position effect identifies a nonlinear,
 U-shaped relationship between the position of an item within a study
 list --- its serial position --- and its probability of retrieval after
-encoding (Murdock Jr 1962). Researchers typically distinguish between
+encoding (Murdock Jr, 1962). Researchers typically distinguish between
 the enhanced retrieval probabilities for early and terminal items; the
 advantage for the initially presented items is called the primacy
 effect, while the normally larger advantage for the few presented items
@@ -278,8 +277,8 @@ tend to initiate recall with the most recently studied items from the
 list; however, in a \emph{serial} recall task where participants are
 instructed to recall items in the order in which they were presented
 rather than freely, participants tend to successfully recall the
-earliest presented items first (for example in Golomb et al. 2008). This
-difference implies that while participants maintain and can access
+earliest presented items first (for example in Golomb et al., 2008).
+This difference implies that while participants maintain and can access
 memories of item positions to perform a serial recall task, memory
 search and retrieval is organized by other features of experience.
 
@@ -298,37 +297,37 @@ response probability (lag-CRP) analyses find that subjects reliably tend
 to make transitions between temporally contiguous items (that is, items
 presented near one another) during free recall. Furthermore, they
 exhibit a forward bias, recalling contiguous items presented after the
-last recalled item more frequently than items presented before (Kahana
+last recalled item more frequently than items presented before (Kahana,
 1996).
 
 To account for these phenomena, the formal literature has largely
 converged on retrieved context theories of memory search (for example,
-Howard and Kahana 2002; Polyn, Norman, and Kahana 2009; Morton and Polyn
-2016). Generally, according to these theories, as items are encoded into
-a memory system, an internal representational of temporal context is
-also maintained that dynamically updates itself to reflect a weighted
-summary of recent experience. As each item is studied, a Hebbian
-learning mechanism associates the item's features to the current state
-of the context representation. Once associated, item features can cue
-retrieval of associated contextual features, and vice versa. When the
-retrieval phase comes, the current contextual representation can drive
-memory search by activating a blend of associated item features. This
-prompts a retrieval competition in which a particular item is selected
-and retrieved. Correspondingly, retrieving an item reactivates its
+Howard \& Kahana, 2002; Morton \& Polyn, 2016; Polyn et al., 2009).
+Generally, according to these theories, as items are encoded into a
+memory system, an internal representational of temporal context is also
+maintained that dynamically updates itself to reflect a weighted summary
+of recent experience. As each item is studied, a Hebbian learning
+mechanism associates the item's features to the current state of the
+context representation. Once associated, item features can cue retrieval
+of associated contextual features, and vice versa. When the retrieval
+phase comes, the current contextual representation can drive memory
+search by activating a blend of associated item features. This prompts a
+retrieval competition in which a particular item is selected and
+retrieved. Correspondingly, retrieving an item reactivates its
 associated contextual features, updating context before the next recall
 attempt. The retrieved context supports the neighbors of the
 just-recalled item, which gives rise to temporal organization.
 
 With these basic mechanisms, retrieved-context models have been used to
 explain many phenomena, including serial and temporal organizational
-effects in list-learning tasks (Polyn, Norman, and Kahana 2009; Siegel
-and Kahana 2014; Schwartz et al. 2005), and broader domains such as
-financial decision making (Wachter and Kahana 2019), emotion regulation
-(Talmi, Lohnas, and Daw 2019), and neural signal dynamics within the
-medial temporal lobe (Kragel, Morton, and Polyn 2015). Further model
-development has integrated retrieved context accounts of memory search
-with theories of semantic knowledge (Morton and Polyn 2016) and changes
-related to healthy aging (Healey and Kahana 2016).
+effects in list-learning tasks (Polyn et al., 2009; Schwartz et al.,
+2005; Siegel \& Kahana, 2014), and broader domains such as financial
+decision making (Wachter \& Kahana, 2019), emotion regulation (Talmi et
+al., 2019), and neural signal dynamics within the medial temporal lobe
+(Kragel et al., 2015). Further model development has integrated
+retrieved context accounts of memory search with theories of semantic
+knowledge (Morton \& Polyn, 2016) and changes related to healthy aging
+(Healey \& Kahana, 2016).
 
 The framework used to implement most retrieved context models of memory
 search acts like a prototype model. These models typically encode
@@ -351,7 +350,7 @@ representation in organizing performance. Indeed, the original
 presentation of MINERVA 2, the first major instance-based memory
 modeling architecture, included a representation of list context as a
 feature in stored memory instances to model source-specific frequency
-judgments from memory (Hintzman 1984). (Lehman and Malmberg 2013)
+judgments from memory (Hintzman, 1984). (Lehman \& Malmberg, 2013)
 proposed an instance-based buffer model that accounts for patterns like
 recency and the position position effect in terms of storage and
 retrieval of traces containing information about item and contextual
@@ -369,16 +368,16 @@ similarly distinguish models of memory search.
 
 In this paper, I show that the mechanisms proposed by the influential
 Context Maintanence and Retrieval (CMR) model of memory search (Morton
-and Polyn 2016) can be realized within either a prototypical or
+\& Polyn, 2016) can be realized within either a prototypical or
 instance-based model architecture without substantially impacting
 performance across various experimental conditions. This instance-based
 CMR (InstanceCMR) extends the established MINERVA 2 multiple traces
-model (Hintzman 1984, 1986, 1988) to support context-based memory search
-and simulate performance on the free recall task. I fit InstanceCMR and
-its original prototype-based counterpart (prototypeCMR) to the sequences
-of individual responses made by participants in three distinct free
-recall task datasets.I find that the models account for retrieval
-performance with similar effectiveness despite architectural
+model (Hintzman, 1984, 1986, 1988) to support context-based memory
+search and simulate performance on the free recall task. I fit
+InstanceCMR and its original prototype-based counterpart (prototypeCMR)
+to the sequences of individual responses made by participants in three
+distinct free recall task datasets.I find that the models account for
+retrieval performance with similar effectiveness despite architectural
 differences, including over data manipulating the lengths of study lists
 between trials and other data manipulating the number of times
 particular items are studied within trials.
@@ -410,13 +409,13 @@ of temporal context (a context layer, \(C\)) and another of features of
 studied items (an item layer, \(F\)). While this paper introduces an
 instance-based account of these interactions, we here specify a variant
 of the original prototype-based context maintenance and retrieval (CMR)
-model (Polyn, Norman, and Kahana 2009) to support comparison against
-this account. The instance-based model we emphasize tracks the history
-of interactions between context and item features by storing a discrete
-record of each experience in memory for later inspection. In contrast,
-PrototypeCMR maintains a simplified neural network whose connection
-weights accumulate a center of tendency representation reflecting
-context and item interactions across experience.
+model (Polyn et al., 2009) to support comparison against this account.
+The instance-based model we emphasize tracks the history of interactions
+between context and item features by storing a discrete record of each
+experience in memory for later inspection. In contrast, PrototypeCMR
+maintains a simplified neural network whose connection weights
+accumulate a center of tendency representation reflecting context and
+item interactions across experience.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1797}}
@@ -652,8 +651,8 @@ according to a Hebbian learning process and then retrieved based on
 activation from a cue. The memory architecture investigated in this
 paper alternatively supposes that learning episodes are stored as
 discrete instances in memory and only abstracted over at retrieval.
-Within previous examples of this architecture (e.g., Hintzman 1984;
-Jamieson et al. 2018), stored instances are represented as vectors
+Within previous examples of this architecture (e.g., Hintzman, 1984;
+Jamieson et al., 2018), stored instances are represented as vectors
 stacked within a \(m\) by \(n\) memory matrix \(M\). In model variations
 where vectors are not composed of binary values, at retrieval each trace
 is activated in parallel based on a positively accelerated
@@ -677,7 +676,7 @@ E(p) = \sum^{i=m}_{i=1}\sum^{j=n}_{j=1}a(p)_i \times M_{ij}
 
 Our instance-based implementation of the context maintenance and
 retrieval model (InstanceCMR) realizes the retrieved context account of
-memory search (as articulated by Morton and Polyn 2016) by extending
+memory search (as articulated by Morton \& Polyn, 2016) by extending
 this instance-based architecture to capture how retrieved context theory
 avers that item and temporal contextual associations evolve and organize
 retrieval. To make comparison of architectures as straightforward as
@@ -916,18 +915,18 @@ account for behavioral performance in the free recall task. This
 includes key benchmark phenomena such as the temporal contiguity and
 serial position effects, as well as for the overall sequence of
 responses generated by participants. We used a likelihood-based model
-comparison technique introduced by Kragel, Morton, and Polyn (2015) that
-assesses model variants based on how accurately they can predict the
-specific sequence in which items were recalled. For each model, we
-related this technique with an optimization technique called
-differential evolution (Storn and Price 1997) to search for the
-parameter configuration that maximize the likelihood of the considered
-data. Likelihoods assigned to datasets by models and their respective
-optimized parameters in turn support comparison of their effectiveness
-accounting for the recall sequences exhibited by participants in the
-data. Visualization of datasets compared to those of simulation outputs
-given these models with these parameters similarly help compare how well
-models realize temporal contiguity and serial position effects.
+comparison technique introduced by Kragel et al. (2015) that assesses
+model variants based on how accurately they can predict the specific
+sequence in which items were recalled. For each model, we related this
+technique with an optimization technique called differential evolution
+(Storn \& Price, 1997) to search for the parameter configuration that
+maximize the likelihood of the considered data. Likelihoods assigned to
+datasets by models and their respective optimized parameters in turn
+support comparison of their effectiveness accounting for the recall
+sequences exhibited by participants in the data. Visualization of
+datasets compared to those of simulation outputs given these models with
+these parameters similarly help compare how well models realize temporal
+contiguity and serial position effects.
 
 \hypertarget{likelihood-based-model-comparison}{%
 \subsection{Likelihood-based model
@@ -935,18 +934,18 @@ comparison}\label{likelihood-based-model-comparison}}
 
 To evaluate how effectively each model accounts for the responses in our
 datasets, we applied a likelihood-based model comparison technique
-introduced by Kragel, Morton, and Polyn (2015) that assesses model
-variants based on how accurately they can predict the specific sequence
-in which items are recalled. According to this method, repeated items
-and intrusions (responses naming items not presented in the list) are
-included from participants' recall sequences. Given an arbitrary
-parameter configuration and a sequences of recalls to predict, a model
-simulates encoding of each item presented in the corresponding study
-list in its respective order. Then, beginning with the first item the
-participant recalled in the trial, the probability assigned by the model
-to the recall event is recorded. Next, the model simulates retrieval of
-that item, and given its updated state is used to similarly predict the
-next event in the recall sequence - either retrieval of another item, or
+introduced by Kragel et al. (2015) that assesses model variants based on
+how accurately they can predict the specific sequence in which items are
+recalled. According to this method, repeated items and intrusions
+(responses naming items not presented in the list) are included from
+participants' recall sequences. Given an arbitrary parameter
+configuration and a sequences of recalls to predict, a model simulates
+encoding of each item presented in the corresponding study list in its
+respective order. Then, beginning with the first item the participant
+recalled in the trial, the probability assigned by the model to the
+recall event is recorded. Next, the model simulates retrieval of that
+item, and given its updated state is used to similarly predict the next
+event in the recall sequence - either retrieval of another item, or
 termination of recall - and so on until retrieval terminates. The
 probability that the model assigns to each event in the recall sequence
 conditional on previous trial events are thus all recorded. These
@@ -962,7 +961,7 @@ correspond to better effectiveness accounting for those datasets.
 
 To find the parameter configuration for each model that maximizes its
 predicted likelihood of observed data, we applied the optimization
-technique called differential evolution (Storn and Price 1997) as
+technique called differential evolution (Storn \& Price, 1997) as
 implemented in the Python library scipy. Differential evolution
 maintains a population of possible parameter configurations; at each
 update, the algorithm mutates each population member by stochastically
@@ -1036,15 +1035,15 @@ helps characterize the temporal organization of recall across trials.
 We start by comparing how our prototype- and instance-based
 implementations of CMR account for behavior in a classic experiment
 where each item is presented just once per study phase. For these
-simulations, we used the dataset reported by Murdock and Okada (1970).
+simulations, we used the dataset reported by Murdock \& Okada (1970).
 Each of 72 undergraduates performed 20 trials with study lists each
 consisting of 20 unique words visually presented at either 60 or 120
 words per minute. Given a particular subject, words were unique both
 within and across trials, and randomly selected from the Toronto Word
-Pool (Friendly et al. 1982), a widely-used collection of high frequency
+Pool (Friendly et al., 1982), a widely-used collection of high frequency
 nouns, adjectives, and verbs.
 
-While the major focus of the original report by Murdock and Okada (1970)
+While the major focus of the original report by Murdock \& Okada (1970)
 was to investigate inter-response times in single-trial free recall,
 here we focus consideration on the content of recorded recall sequences.
 Because it excludes within-list repetitions of studied items, this
@@ -1081,7 +1080,7 @@ recall performance across the dataset.
 
 {\centering 
 
-\includegraphics{./individual_murdock1970.pdf}
+\includegraphics{./figures/individual_murdock1970.pdf}
 
 }
 
@@ -1113,7 +1112,7 @@ max & 387.742 & 390.806 \\
 
 \caption{\label{fig-murdokafits}Distribution of log-likelihood scores of
 recall sequences exhibited by each subject under each considered model
-across list-lengths (Murdock and Okada 1970)}
+across list-lengths (Murdock \& Okada, 1970)}
 
 \end{figure}
 
@@ -1134,17 +1133,17 @@ participants, we found that both our prototype-based and instance-based
 CMR implementations account for these benchmark organizational summary
 statistics across the full dataset to similar extents. To build on this
 finding of broad model equivalence with respect to the results reported
-by Murdock and Okada (1970), we consider the model variants under
-broader experimental conditions.
+by Murdock \& Okada (1970), we consider the model variants under broader
+experimental conditions.
 
 \begin{figure}
 
-{\centering \includegraphics{./overall_murdock1970.pdf}
+{\centering \includegraphics{./figures/overall_murdock1970.pdf}
 
 }
 
 \caption{\label{fig-murdokasummary}Comparison of summary statistics
-between each model against observed data (Murdock and Okada 1970)}
+between each model against observed data (Murdock \& Okada, 1970)}
 
 \end{figure}
 
@@ -1160,10 +1159,10 @@ experiment impacted neither the shape of observed primacy effects during
 recall nor on the slope of apparent recency effects, though other
 features of recall sequences did change, such as the overall retrieval
 probability for initially encoded items as well as the list-list
-asymptote. Building on these observations, Polyn, Norman, and Kahana
-(2009) found that the CMR model could account for these effects of list
-length on the shape of the serial position curve in free recall using a
-single parameter configuration.
+asymptote. Building on these observations, Polyn et al. (2009) found
+that the CMR model could account for these effects of list length on the
+shape of the serial position curve in free recall using a single
+parameter configuration.
 
 Here we investigate whether our prototype- and instance-based
 implementations of CMR can similarly account for recall performance
@@ -1179,27 +1178,27 @@ differential evolution optimization the parameter configuration
 maximizing the likelihood assigned by the model to each recall sequence
 in all relevant trials, whether with list length of 20 or 30 or 40. The
 log-likelihoods of the data corresponding to each participant and model
-variant are plotted in Figure~\ref{fig-murd62fits}, with a table
-providing summary statistics. The distribution of log-likelihood scores
-between participants for the PrototypeCMR and InstanceCMR model variants
-only marginally differ, suggesting little meaningful difference between
+variant are plotted in \textbf{?@fig-murd62fits}, with a table providing
+summary statistics. The distribution of log-likelihood scores between
+participants for the PrototypeCMR and InstanceCMR model variants only
+marginally differ, suggesting little meaningful difference between
 variants in their effectiveness predicting recall sequences, even when
 using a single parameter configuration per participant to account for
 performance across variable list lengths.
 
 \begin{figure}
 
-\begin{minipage}[c]{0.50\linewidth}
+\begin{minipage}[c]{1.00\linewidth}
 
 {\centering 
 
-\includegraphics{./individual_murdock1962.pdf}
+\includegraphics{./figures/individual_murdock1962.pdf}
 
 }
 
 \end{minipage}%
-%
-\begin{minipage}[c]{0.50\linewidth}
+\newline
+\begin{minipage}[c]{1.00\linewidth}
 
 {\centering 
 
@@ -1209,13 +1208,13 @@ performance across variable list lengths.
 \midrule
 \endhead
 count & 15 & 15 \\
-mean & 5295.34 & 5280.07 \\
-std & 547.19 & 553.484 \\
-min & 4464.46 & 4387.61 \\
-25\% & 4863.55 & 4865.08 \\
-50\% & 5285.28 & 5280.25 \\
-75\% & 5619.48 & 5592.88 \\
-max & 6358.67 & 6352.11 \\
+mean & 5300.61 & 5281.17 \\
+std & 547.632 & 556.755 \\
+min & 4475.97 & 4381.06 \\
+25\% & 4873.37 & 4865.1 \\
+50\% & 5300.33 & 5280.25 \\
+75\% & 5620.59 & 5591.8 \\
+max & 6382.21 & 6375.89 \\
 \bottomrule
 \end{longtable}
 
@@ -1223,9 +1222,9 @@ max & 6358.67 & 6352.11 \\
 
 \end{minipage}%
 
-\caption{\label{fig-murd62fits}Distribution of log-likelihood scores of
+\caption{\label{fig-murdokafits}Distribution of log-likelihood scores of
 recall sequences exhibited by each subject under each considered model
-across list-lengths (Murdock Jr 1962)}
+across list-lengths (Murdock Jr, 1962)}
 
 \end{figure}
 
@@ -1244,7 +1243,7 @@ their fitted parameters. Separate analyses simulated trials with study
 list lengths of 20 and of 30 items, with summary statistics tracked
 separately. Figure~\ref{fig-murd62summary} plots the results of these
 simulations against statistics from corresponding subsets of the
-behavioral data from (Murdock Jr 1962), with unique sets of plots for
+behavioral data from (Murdock Jr, 1962), with unique sets of plots for
 both model variants and list lengths. As with previous analyses, we
 found that both our prototype-based and instance-based CMR
 implementations account for these benchmark organizational summary
@@ -1258,7 +1257,7 @@ statistics across the considered data to similar extents.
 
 {\centering 
 
-\includegraphics{./cmr_summary_murdock1962.pdf}
+\includegraphics{./figures/cmr_summary_murdock1962.pdf}
 
 }
 
@@ -1271,7 +1270,7 @@ statistics across the considered data to similar extents.
 
 {\centering 
 
-\includegraphics{./icmr_summary_murdock1962.pdf}
+\includegraphics{./figures/icmr_summary_murdock1962.pdf}
 
 }
 
@@ -1279,7 +1278,7 @@ statistics across the considered data to similar extents.
 }
 
 \caption{\label{fig-murd62summary}Comparison of summary statistics
-between each model against observed data (Murdock Jr 1962)}
+between each model against observed data (Murdock Jr, 1962)}
 
 \end{figure}
 
@@ -1293,11 +1292,11 @@ study, there is reason to suspect that the models might diverge when it
 comes to accounting for the effect of item repetition on later free
 recall.
 
-Previous work (Siegel and Kahana 2014) has related CMR to two broad
+Previous work (Siegel \& Kahana, 2014) has related CMR to two broad
 accounts of how item repetition influences memory and in particular
 drives the spacing effect, a monotonic relationship between recall
 probability and the size of the lag between item repetitions in a study
-list. Under the contextual-variability account (Anderson and Bower
+list. Under the contextual-variability account (Anderson \& Bower,
 1972), each time an item is studied, it's associated in memory with the
 current state of a slowly drifting contextual representation. Depending
 on how spaced apart two presentations of an item might be, the
@@ -1330,7 +1329,7 @@ result.
 
 This distinction between instance-based and prototype-based
 architectures has been marshalled to explain model differences in other
-research contexts (e.g., Jamieson et al. 2018). In this context,
+research contexts (e.g., Jamieson et al., 2018). In this context,
 however, the different between applying \(\tau\) to trace activations or
 echo content is between enforcing quasi-linear or quasi-exponential
 effect of item repetition on subsequent recall probability. Suppose a
@@ -1350,7 +1349,7 @@ measure the effect on the probability of retrieving that item for each
 successive repetition given a static retrieval cue.
 Figure~\ref{fig-repeffect} plots the result of of this simulation over
 1000 experiments for 50 item repetitions using PrototypeCMR and
-InstanceCMRand model parameters fitted using data from Murdock and Okada
+InstanceCMRand model parameters fitted using data from Murdock \& Okada
 (1970) and corresponds with our predictions. Model fitting over a
 different dataset might obviate these observed differences; however
 these simulations raise the possibility that with increasing item
@@ -1366,7 +1365,7 @@ investigation.
 
 {\centering 
 
-\includegraphics{./cmr_repeffect.pdf}
+\includegraphics{./figures/cmr_repeffect.pdf}
 
 }
 
@@ -1378,7 +1377,7 @@ investigation.
 
 {\centering 
 
-\includegraphics{./icmr_repeffect.pdf}
+\includegraphics{./figures/icmr_repeffect.pdf}
 
 }
 
@@ -1387,7 +1386,7 @@ investigation.
 
 \caption{\label{fig-repeffect}Course of effect of successive item
 repetitions on recall probability, by model, using parameters fitted
-over Murdock and Okada (1970) dataset and a static contextual cue after
+over Murdock \& Okada (1970) dataset and a static contextual cue after
 simulation of a pure 20-item list.}
 
 \end{figure}
@@ -1397,13 +1396,13 @@ instance- and prototype-based accounts of context maintenance and
 retrieval, free recall datasets with high amounts of repetition to the
 extent simulated in the above example do not yet exist. However, to
 support an initial comparison of how models account for item repetition
-effects, we use data associated with Siegel and Kahana (2014). Within
-the dataset, 35 subjects performed delayed free recall of 48 lists over
-four sessions. Except for deliberate item repetitions, words were unique
+effects, we use data associated with Siegel \& Kahana (2014). Within the
+dataset, 35 subjects performed delayed free recall of 48 lists over four
+sessions. Except for deliberate item repetitions, words were unique
 within each session and did not repeat in successive sessions. The
 semantic relatedness of words was also controlled below a value of .55
-according to WAS (Steyvers, Shiffrin, and Nelson 2005). Across trials,
-lists were structured in four different ways:
+according to WAS (Steyvers et al., 2005). Across trials, lists were
+structured in four different ways:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1440,7 +1439,7 @@ study with similar degrees of success.
 
 {\centering 
 
-\includegraphics{./individual_lohnas2014.pdf}
+\includegraphics{./figures/individual_lohnas2014.pdf}
 
 }
 
@@ -1471,7 +1470,7 @@ max & 2752.36 & 2751.88 \\
 \end{minipage}%
 
 \caption{\label{fig-lohnasfits}Log-likelihood score distributions for
-each subject under each considered model (Siegel and Kahana 2014)}
+each subject under each considered model (Siegel \& Kahana, 2014)}
 
 \end{figure}
 
@@ -1491,7 +1490,7 @@ plot for both the behavioral data and simulated datasets, the rate at
 which items were recalled, binned based on the number of intervening
 items between repetitions. On the one hand, we observe that both models
 poorly account for the pattern of recall rates observed as a function of
-presentation spacing in the mixed condition of the Siegel and Kahana
+presentation spacing in the mixed condition of the Siegel \& Kahana
 (2014) dataset, exaggerating the mnemonic benefit of item repetition in
 general while understating the mnemonic effect of increased spacing
 between repetitions. On the other hand, recapitulating all previous
@@ -1507,7 +1506,7 @@ effects of repetition spacing on later item recall.
 
 {\centering 
 
-\includegraphics{./cmr_spacing.png}
+\includegraphics{./figures/cmr_spacing.png}
 
 }
 
@@ -1520,7 +1519,7 @@ effects of repetition spacing on later item recall.
 
 {\centering 
 
-\includegraphics{./icmr_spacing.png}
+\includegraphics{./figures/icmr_spacing.png}
 
 }
 
@@ -1533,7 +1532,7 @@ effects of repetition spacing on later item recall.
 
 {\centering 
 
-\includegraphics{./data_spacing.png}
+\includegraphics{./figures/data_spacing.png}
 
 }
 
@@ -1542,7 +1541,7 @@ effects of repetition spacing on later item recall.
 
 \caption{\label{fig-lohnas_spacing}Comparison of predicted recall
 probability as function of item repetition spacing between each model
-and the observed data (Siegel and Kahana 2014).}
+and the observed data (Siegel \& Kahana, 2014).}
 
 \end{figure}
 
@@ -1578,7 +1577,7 @@ advance the historical effort in cognitive science to develop ``a
 general account of memory and its processes in a working computational
 system to produce a common explanation of behavior rather than a set of
 lab-specific and domain-specific theories for different behaviors''
-(Newell 1973; Jamieson et al. 2018).
+(Jamieson et al., 2018; Newell, 1973).
 
 This finding has been increasingly validated lately in other work. Logan
 (2021) for example similarly embeds mechanisms for maintaining and
@@ -1588,11 +1587,11 @@ substantively distinct variations of a task requiring participants to
 encode and report random strings in left-to-right order by typing them
 on a computer keyboard, including whole report, serial recall, and copy
 typing. Other projects more motivated by neuroscientific data (e.g.
-(Ketz, Morkonda, and O'Reilly 2013); (Schapiro et al. 2017)) embed
-mechanisms for context-based retrieval within detailed formal accounts
-of hippocampus functionality more complex than either the instance-based
-or hebbian associative network architectures considered in this work.
-Our head-to-head comparison of this instance-based account of context
+(Ketz et al., 2013); (Schapiro et al., 2017)) embed mechanisms for
+context-based retrieval within detailed formal accounts of hippocampus
+functionality more complex than either the instance-based or hebbian
+associative network architectures considered in this work. Our
+head-to-head comparison of this instance-based account of context
 maintenance and retrieval against its more standard prototype-based
 counterpart and observation that both competitively explain free recall
 performance under varied conditions further evinces the architectural
@@ -1621,23 +1620,22 @@ retrieved echo representation nonlinearly based on the traces'
 similarity to a probe. However, while the prototype-based semantic
 memory models examined by Jamieson et al. (2018) exclude a similar
 response scaling mechanism, the standard prototype-based specification
-of CMR does include one. Research on category learning (Nosofsky and
-Zaki 2002; Stanton, Nosofsky, and Zaki 2002) also contrasting prototype-
-and instance-based models of the behavior also identifies instance
-models' characteristic response-scaling mechanism as crucial for
-accounting for deterministic patterns in memory performance under
-various research conditions. However, they also evaluate prototype-based
-models that, like CMR, do include response-scaling mechanisms -- though
-by definition only instance-based models apply the mechanism to
-similarities computed between traces and probe representations. To
-compare the instance-based Exemplar-Generalization model against a
-prototype-based model with a similar response scaling mechanism,
-Nosofsky and Zaki (2002) focused on how the models differentially
-characterize generalization, in this case the category assignment of
-novel items excluded from initial training. Finding that participants
-mroe often classify items in the the same categories based on their
-similarity to one another rather than based on similarity to
-hypothetical prototype-representations, the instance-based
+of CMR does include one. Research on category learning (Nosofsky \&
+Zaki, 2002; Stanton et al., 2002) also contrasting prototype- and
+instance-based models of the behavior also identifies instance models'
+characteristic response-scaling mechanism as crucial for accounting for
+deterministic patterns in memory performance under various research
+conditions. However, they also evaluate prototype-based models that,
+like CMR, do include response-scaling mechanisms -- though by definition
+only instance-based models apply the mechanism to similarities computed
+between traces and probe representations. To compare the instance-based
+Exemplar-Generalization model against a prototype-based model with a
+similar response scaling mechanism, Nosofsky \& Zaki (2002) focused on
+how the models differentially characterize generalization, in this case
+the category assignment of novel items excluded from initial training.
+Finding that participants mroe often classify items in the the same
+categories based on their similarity to one another rather than based on
+similarity to hypothetical prototype-representations, the instance-based
 Exemplar-Generalization model came out ahead.
 
 Even the research above drawing distinctions between the explanatory
@@ -1657,7 +1655,7 @@ contextual features under traditional research conditions as emphasized
 in architectural comparisons drawn by Jamieson et al. (2018). Similarly,
 the uniform similarity structure of list items studied and recalled
 across evaluated datasets here potentially sidesteps issues raised by
-Nosofsky and Zaki (2002) with prototype-based models.
+Nosofsky \& Zaki (2002) with prototype-based models.
 
 Higher rates of item repetition or enforced distortions of contextual
 variation (such as by dividing an encoding phase into distinct trials or
@@ -1668,7 +1666,7 @@ between InstanceCMR and PrototypeCMR -- an exponential rate of increase
 of recall rates for repeated items in the former, but not the latter --
 but the distinction seems independent from contrasts drawn between the
 architectures drawn by other researchers such as Jamieson et al. (2018)
-and Nosofsky and Zaki (2002). By contrast, research conditions where
+and Nosofsky \& Zaki (2002). By contrast, research conditions where
 items are repeated rarely in some contexts but frequently in others or
 nonorthogonal item features influence and are factored into model
 performance would further explore the relevance of prior exploration of
@@ -1685,8 +1683,8 @@ architectures evaluated as to the datasets explored. More complex or
 just different models that might be classed in one of these categories
 may not exhibit the same patterns. For example, the examinations here
 only consider a constrained conceptualization of instance-based models
-styled after the MINERVA 2 simulation model of human memory (Hintzman
-1984). Lehman and Malmberg (2013) produced a dual store model of
+styled after the MINERVA 2 simulation model of human memory (Hintzman,
+1984). Lehman \& Malmberg (2013) produced a dual store model of
 performance on various recall tasks and can be classed as an
 instance-based model despite excluding some traditional features of
 models inspired by Hintzman (1984), such as reliance on a single trace
@@ -1716,167 +1714,168 @@ innovation.
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-anderson1972recognition}{}}%
-Anderson, John R, and Gordon H Bower. 1972. {``Recognition and Retrieval
-Processes in Free Recall.''} \emph{Psychological Review} 79 (2): 97.
+Anderson, J. R., \& Bower, G. H. (1972). Recognition and retrieval
+processes in free recall. \emph{Psychological Review}, \emph{79}(2), 97.
 
 \leavevmode\vadjust pre{\hypertarget{ref-church2017word2vec}{}}%
-Church, Kenneth Ward. 2017. {``Word2Vec.''} \emph{Natural Language
-Engineering} 23 (1): 155--62.
+Church, K. W. (2017). Word2Vec. \emph{Natural Language Engineering},
+\emph{23}(1), 155--162.
 
 \leavevmode\vadjust pre{\hypertarget{ref-dumais2004latent}{}}%
-Dumais, Susan T. 2004. {``Latent Semantic Analysis.''} \emph{Annual
-Review of Information Science and Technology} 38 (1): 188--230.
+Dumais, S. T. (2004). Latent semantic analysis. \emph{Annual Review of
+Information Science and Technology}, \emph{38}(1), 188--230.
 
 \leavevmode\vadjust pre{\hypertarget{ref-friendly1982toronto}{}}%
-Friendly, Michael, Patricia E Franklin, David Hoffman, and David C
-Rubin. 1982. {``The Toronto Word Pool: Norms for Imagery, Concreteness,
-Orthographic Variables, and Grammatical Usage for 1,080 Words.''}
-\emph{Behavior Research Methods \& Instrumentation} 14 (4): 375--99.
+Friendly, M., Franklin, P. E., Hoffman, D., \& Rubin, D. C. (1982). The
+toronto word pool: Norms for imagery, concreteness, orthographic
+variables, and grammatical usage for 1,080 words. \emph{Behavior
+Research Methods \& Instrumentation}, \emph{14}(4), 375--399.
 
 \leavevmode\vadjust pre{\hypertarget{ref-golomb2008effects}{}}%
-Golomb, Julie D, Jonathan E Peelle, Kelly M Addis, Michael J Kahana, and
-Arthur Wingfield. 2008. {``Effects of Adult Aging on Utilization of
-Temporal and Semantic Associations During Free and Serial Recall.''}
-\emph{Memory \& Cognition} 36 (5): 947--56.
+Golomb, J. D., Peelle, J. E., Addis, K. M., Kahana, M. J., \& Wingfield,
+A. (2008). Effects of adult aging on utilization of temporal and
+semantic associations during free and serial recall. \emph{Memory \&
+Cognition}, \emph{36}(5), 947--956.
 
 \leavevmode\vadjust pre{\hypertarget{ref-healey2016four}{}}%
-Healey, M Karl, and Michael J Kahana. 2016. {``A Four-Component Model of
-Age-Related Memory Change.''} \emph{Psychological Review} 123 (1): 23.
+Healey, M. K., \& Kahana, M. J. (2016). A four-component model of
+age-related memory change. \emph{Psychological Review}, \emph{123}(1),
+23.
 
 \leavevmode\vadjust pre{\hypertarget{ref-hintzman1984minerva}{}}%
-Hintzman, Douglas L. 1984. {``MINERVA 2: A Simulation Model of Human
-Memory.''} \emph{Behavior Research Methods, Instruments, \& Computers}
-16 (2): 96--101.
+Hintzman, D. L. (1984). MINERVA 2: A simulation model of human memory.
+\emph{Behavior Research Methods, Instruments, \& Computers},
+\emph{16}(2), 96--101.
 
 \leavevmode\vadjust pre{\hypertarget{ref-hintzman1986schema}{}}%
----------. 1986. {``"Schema Abstraction" in a Multiple-Trace Memory
-Model.''} \emph{Psychological Review} 93 (4): 411.
+Hintzman, D. L. (1986). "Schema abstraction" in a multiple-trace memory
+model. \emph{Psychological Review}, \emph{93}(4), 411.
 
 \leavevmode\vadjust pre{\hypertarget{ref-hintzman1988judgments}{}}%
----------. 1988. {``Judgments of Frequency and Recognition Memory in a
-Multiple-Trace Memory Model.''} \emph{Psychological Review} 95 (4): 528.
+Hintzman, D. L. (1988). Judgments of frequency and recognition memory in
+a multiple-trace memory model. \emph{Psychological Review},
+\emph{95}(4), 528.
 
 \leavevmode\vadjust pre{\hypertarget{ref-howard2002distributed}{}}%
-Howard, Marc W, and Michael J Kahana. 2002. {``A Distributed
-Representation of Temporal Context.''} \emph{Journal of Mathematical
-Psychology} 46 (3): 269--99.
+Howard, M. W., \& Kahana, M. J. (2002). A distributed representation of
+temporal context. \emph{Journal of Mathematical Psychology},
+\emph{46}(3), 269--299.
 
 \leavevmode\vadjust pre{\hypertarget{ref-jamieson2018instance}{}}%
-Jamieson, Randall K, Johnathan E Avery, Brendan T Johns, and Michael N
-Jones. 2018. {``An Instance Theory of Semantic Memory.''}
-\emph{Computational Brain \& Behavior} 1 (2): 119--36.
+Jamieson, R. K., Avery, J. E., Johns, B. T., \& Jones, M. N. (2018). An
+instance theory of semantic memory. \emph{Computational Brain \&
+Behavior}, \emph{1}(2), 119--136.
 
 \leavevmode\vadjust pre{\hypertarget{ref-kahana1996associative}{}}%
-Kahana, Michael J. 1996. {``Associative Retrieval Processes in Free
-Recall.''} \emph{Memory \& Cognition} 24 (1): 103--9.
+Kahana, M. J. (1996). Associative retrieval processes in free recall.
+\emph{Memory \& Cognition}, \emph{24}(1), 103--109.
 
 \leavevmode\vadjust pre{\hypertarget{ref-kahana2020computational}{}}%
----------. 2020. {``Computational Models of Memory Search.''}
-\emph{Annual Review of Psychology} 71: 107--38.
+Kahana, M. J. (2020). Computational models of memory search.
+\emph{Annual Review of Psychology}, \emph{71}, 107--138.
 
 \leavevmode\vadjust pre{\hypertarget{ref-ketz2013theta}{}}%
-Ketz, Nicholas, Srinimisha G Morkonda, and Randall C O'Reilly. 2013.
-{``Theta Coordinated Error-Driven Learning in the Hippocampus.''}
-\emph{PLoS Comput Biol} 9 (6): e1003067.
+Ketz, N., Morkonda, S. G., \& O'Reilly, R. C. (2013). Theta coordinated
+error-driven learning in the hippocampus. \emph{PLoS Comput Biol},
+\emph{9}(6), e1003067.
 
 \leavevmode\vadjust pre{\hypertarget{ref-kragel2015neural}{}}%
-Kragel, James E, Neal W Morton, and Sean M Polyn. 2015. {``Neural
-Activity in the Medial Temporal Lobe Reveals the Fidelity of Mental Time
-Travel.''} \emph{Journal of Neuroscience} 35 (7): 2914--26.
+Kragel, J. E., Morton, N. W., \& Polyn, S. M. (2015). Neural activity in
+the medial temporal lobe reveals the fidelity of mental time travel.
+\emph{Journal of Neuroscience}, \emph{35}(7), 2914--2926.
 
 \leavevmode\vadjust pre{\hypertarget{ref-lehman2013buffer}{}}%
-Lehman, Melissa, and Kenneth J Malmberg. 2013. {``A Buffer Model of
-Memory Encoding and Temporal Correlations in Retrieval.''}
-\emph{Psychological Review} 120 (1): 155.
+Lehman, M., \& Malmberg, K. J. (2013). A buffer model of memory encoding
+and temporal correlations in retrieval. \emph{Psychological Review},
+\emph{120}(1), 155.
 
 \leavevmode\vadjust pre{\hypertarget{ref-logan2021serial}{}}%
-Logan, Gordon D. 2021. {``Serial Order in Perception, Memory, and
-Action.''} \emph{Psychological Review} 128 (1): 1.
+Logan, G. D. (2021). Serial order in perception, memory, and action.
+\emph{Psychological Review}, \emph{128}(1), 1.
 
 \leavevmode\vadjust pre{\hypertarget{ref-morton2016predictive}{}}%
-Morton, Neal W, and Sean M Polyn. 2016. {``A Predictive Framework for
-Evaluating Models of Semantic Organization in Free Recall.''}
-\emph{Journal of Memory and Language} 86: 119--40.
+Morton, N. W., \& Polyn, S. M. (2016). A predictive framework for
+evaluating models of semantic organization in free recall. \emph{Journal
+of Memory and Language}, \emph{86}, 119--140.
 
 \leavevmode\vadjust pre{\hypertarget{ref-murdock1970interresponse}{}}%
-Murdock, Bennet B, and Ronald Okada. 1970. {``Interresponse Times in
-Single-Trial Free Recall.''} \emph{Journal of Experimental Psychology}
-86 (2): 263.
+Murdock, B. B., \& Okada, R. (1970). Interresponse times in single-trial
+free recall. \emph{Journal of Experimental Psychology}, \emph{86}(2),
+263.
 
 \leavevmode\vadjust pre{\hypertarget{ref-murdock1962serial}{}}%
-Murdock Jr, Bennet B. 1962. {``The Serial Position Effect of Free
-Recall.''} \emph{Journal of Experimental Psychology} 64 (5): 482.
+Murdock Jr, B. B. (1962). The serial position effect of free recall.
+\emph{Journal of Experimental Psychology}, \emph{64}(5), 482.
 
 \leavevmode\vadjust pre{\hypertarget{ref-newell1973you}{}}%
-Newell, Allen. 1973. {``You Can't Play 20 Questions with Nature and Win:
-Projective Comments on the Papers of This Symposium.''}
+Newell, A. (1973). \emph{You can't play 20 questions with nature and
+win: Projective comments on the papers of this symposium}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-nosofsky2002exemplar}{}}%
-Nosofsky, Robert M, and Safa R Zaki. 2002. {``Exemplar and Prototype
-Models Revisited: Response Strategies, Selective Attention, and Stimulus
-Generalization.''} \emph{Journal of Experimental Psychology: Learning,
-Memory, and Cognition} 28 (5): 924.
+Nosofsky, R. M., \& Zaki, S. R. (2002). Exemplar and prototype models
+revisited: Response strategies, selective attention, and stimulus
+generalization. \emph{Journal of Experimental Psychology: Learning,
+Memory, and Cognition}, \emph{28}(5), 924.
 
 \leavevmode\vadjust pre{\hypertarget{ref-polyn2009context}{}}%
-Polyn, Sean M, Kenneth A Norman, and Michael J Kahana. 2009. {``A
-Context Maintenance and Retrieval Model of Organizational Processes in
-Free Recall.''} \emph{Psychological Review} 116 (1): 129.
+Polyn, S. M., Norman, K. A., \& Kahana, M. J. (2009). A context
+maintenance and retrieval model of organizational processes in free
+recall. \emph{Psychological Review}, \emph{116}(1), 129.
 
 \leavevmode\vadjust pre{\hypertarget{ref-postman1971organization}{}}%
-Postman, Leo. 1971. {``Organization and Interference.''}
-\emph{Psychological Review} 78 (4): 290.
+Postman, L. (1971). Organization and interference. \emph{Psychological
+Review}, \emph{78}(4), 290.
 
 \leavevmode\vadjust pre{\hypertarget{ref-puff1979memory}{}}%
-Puff, C Richard. 1979. \emph{Memory Organization and Structure}.
-Academic Press.
+Puff, C. R. (1979). \emph{Memory organization and structure}. Academic
+Press.
 
 \leavevmode\vadjust pre{\hypertarget{ref-schapiro2017complementary}{}}%
-Schapiro, Anna C, Nicholas B Turk-Browne, Matthew M Botvinick, and
-Kenneth A Norman. 2017. {``Complementary Learning Systems Within the
-Hippocampus: A Neural Network Modelling Approach to Reconciling Episodic
-Memory with Statistical Learning.''} \emph{Philosophical Transactions of
-the Royal Society B: Biological Sciences} 372 (1711): 20160049.
+Schapiro, A. C., Turk-Browne, N. B., Botvinick, M. M., \& Norman, K. A.
+(2017). Complementary learning systems within the hippocampus: A neural
+network modelling approach to reconciling episodic memory with
+statistical learning. \emph{Philosophical Transactions of the Royal
+Society B: Biological Sciences}, \emph{372}(1711), 20160049.
 
 \leavevmode\vadjust pre{\hypertarget{ref-schwartz2005shadows}{}}%
-Schwartz, Greg, Marc W Howard, Bing Jing, and Michael J Kahana. 2005.
-{``Shadows of the Past: Temporal Retrieval Effects in Recognition
-Memory.''} \emph{Psychological Science} 16 (11): 898--904.
+Schwartz, G., Howard, M. W., Jing, B., \& Kahana, M. J. (2005). Shadows
+of the past: Temporal retrieval effects in recognition memory.
+\emph{Psychological Science}, \emph{16}(11), 898--904.
 
 \leavevmode\vadjust pre{\hypertarget{ref-siegel2014retrieved}{}}%
-Siegel, Lynn L, and Michael J Kahana. 2014. {``A Retrieved Context
-Account of Spacing and Repetition Effects in Free Recall.''}
-\emph{Journal of Experimental Psychology: Learning, Memory, and
-Cognition} 40 (3): 755.
+Siegel, L. L., \& Kahana, M. J. (2014). A retrieved context account of
+spacing and repetition effects in free recall. \emph{Journal of
+Experimental Psychology: Learning, Memory, and Cognition}, \emph{40}(3),
+755.
 
 \leavevmode\vadjust pre{\hypertarget{ref-stanton2002comparisons}{}}%
-Stanton, Roger D, Robert M Nosofsky, and Safa R Zaki. 2002.
-{``Comparisons Between Exemplar Similarity and Mixed Prototype Models
-Using a Linearly Separable Category Structure.''} \emph{Memory \&
-Cognition} 30 (6): 934--44.
+Stanton, R. D., Nosofsky, R. M., \& Zaki, S. R. (2002). Comparisons
+between exemplar similarity and mixed prototype models using a linearly
+separable category structure. \emph{Memory \& Cognition}, \emph{30}(6),
+934--944.
 
 \leavevmode\vadjust pre{\hypertarget{ref-steyvers2005word}{}}%
-Steyvers, Mark, Richard M Shiffrin, and Douglas L Nelson. 2005. {``Word
-Association Spaces for Predicting Semantic Similarity Effects in
-Episodic Memory.''}
+Steyvers, M., Shiffrin, R. M., \& Nelson, D. L. (2005). \emph{Word
+association spaces for predicting semantic similarity effects in
+episodic memory.}
 
 \leavevmode\vadjust pre{\hypertarget{ref-storn1997differential}{}}%
-Storn, Rainer, and Kenneth Price. 1997. {``Differential Evolution--a
-Simple and Efficient Heuristic for Global Optimization over Continuous
-Spaces.''} \emph{Journal of Global Optimization} 11 (4): 341--59.
+Storn, R., \& Price, K. (1997). Differential evolution--a simple and
+efficient heuristic for global optimization over continuous spaces.
+\emph{Journal of Global Optimization}, \emph{11}(4), 341--359.
 
 \leavevmode\vadjust pre{\hypertarget{ref-talmi2019retrieved}{}}%
-Talmi, Deborah, Lynn J Lohnas, and Nathaniel D Daw. 2019. {``A Retrieved
-Context Model of the Emotional Modulation of Memory.''}
-\emph{Psychological Review} 126 (4): 455.
+Talmi, D., Lohnas, L. J., \& Daw, N. D. (2019). A retrieved context
+model of the emotional modulation of memory. \emph{Psychological
+Review}, \emph{126}(4), 455.
 
 \leavevmode\vadjust pre{\hypertarget{ref-wachter2019retrieved}{}}%
-Wachter, Jessica A, and Michael Jacob Kahana. 2019. {``A
-Retrieved-Context Theory of Financial Decisions.''} National Bureau of
-Economic Research.
+Wachter, J. A., \& Kahana, M. J. (2019). \emph{A retrieved-context
+theory of financial decisions}. National Bureau of Economic Research.
 
 \leavevmode\vadjust pre{\hypertarget{ref-yee2019abstraction}{}}%
-Yee, Eiling. 2019. {``Abstraction and Concepts: When, How, Where, What
-and Why?''} Taylor \& Francis.
+Yee, E. (2019). \emph{Abstraction and concepts: When, how, where, what
+and why?} Taylor \& Francis.
 
 \end{CSLReferences}
 
