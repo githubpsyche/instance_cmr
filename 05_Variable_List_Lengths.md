@@ -24,9 +24,7 @@ For each model variant and each participant, we found through differential evolu
 Distribution of log-likelihood scores of recall sequences exhibited by each subject under each considered model across list-lengths [@murdock1962serial]
 :::
 
-
 Considering log-likelihoods alone though leaves ambiguous whether the influence of list length on serial position and related organizational effects are effectively accounted for by both models. To find out, we again focused scrutiny on the prototype-based and instance-based implementations of CMR. We fit each model based on the likelihood assigned to all recall sequences across the dataset rather than by subject or list length. Summary statistics including recall probability as a function of serial position, probability of first recall as a function of serial position, and conditional recall probability as a function of serial lag from the previously recalled item were computed based on simulation of free recall data using the model variants with their fitted parameters. Separate analyses simulated trials with study list lengths of 20 and of 30 items, with summary statistics tracked separately. [Figure @fig-Murd62Summary] plots the results of these simulations against statistics from corresponding subsets of the behavioral data from [@murdock1962serial], with unique sets of plots for both model variants and list lengths. As with previous analyses, we found that both our prototype-based and instance-based CMR implementations account for these benchmark organizational summary statistics across the considered data to similar extents.
-
 
 ::: {#fig-murd62summary layout-nrow=2}
 
