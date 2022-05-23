@@ -6,15 +6,15 @@ book:
   lang: "en"
   execute: false
   chapters:
-    - index.ipynb
-    - 00_Introduction.ipynb
-    - 01_Classic_CMR.ipynb
-    - 02_Instance_CMR.ipynb
-    - 03_Methods.ipynb
-    - 04_Baseline_Comparison.ipynb
-    - 05_Variable_List_Lengths.ipynb
-    - 06_Item_Repetitions.ipynb
-    - 07_Discussion.ipynb
+    - index.md
+    - 00_Introduction.md
+    - 01_Classic_CMR.md
+    - 02_Instance_CMR.md
+    - 03_Methods.md
+    - 04_Baseline_Comparison.md
+    - 05_Variable_List_Lengths.md
+    - 06_Item_Repetitions.md
+    - 07_Discussion.md
     - references.md
 
 bibliography: references.bib

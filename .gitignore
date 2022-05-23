@@ -117,4 +117,8 @@ dmypy.json
 
 # quarto
 /.quarto/
-_book/*files
+/_book/
+
+# obsidian
+/.obsidian/
+/notes/
