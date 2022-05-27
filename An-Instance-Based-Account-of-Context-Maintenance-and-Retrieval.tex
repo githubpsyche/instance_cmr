@@ -179,7 +179,7 @@ Nashville, TN 37235\\
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, interior hidden, sharp corners, breakable, enhanced, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable, interior hidden, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 
 In retrieved-context accounts of memory search like the Context
 Maintenance and Retrieval (CMR) model (Polyn et al., 2009),
@@ -580,7 +580,7 @@ c^{IN}_{i} = M^{FC}f_{i}
 and normalized to have length 1. Context is updated based on this input
 according to:
 
-\begin{equation}\protect\hypertarget{eq-4}{}{ 
+\begin{equation}\protect\hypertarget{eq-4}{}{
 c_i = \rho_ic_{i-1} + \beta_{enc} c_{i}^{IN}
 }\label{eq-4}\end{equation}
 
@@ -588,7 +588,7 @@ with \(\beta\) (for encoding we use \(\beta_{enc}\)) shaping the rate of
 contextual drift with each new experience, and \(\rho\) enforces the
 length of \(c_i\) to 1 according to:
 
-\begin{equation}\protect\hypertarget{eq-5}{}{ 
+\begin{equation}\protect\hypertarget{eq-5}{}{
 \rho_i = \sqrt{1 + \beta^2\left[\left(c_{i-1} \cdot c^{IN}_i\right)^2 - 1\right]} - \beta\left(c_{i-1} \cdot
 c^{IN}_i\right)
 }\label{eq-5}\end{equation}
@@ -609,7 +609,7 @@ and
 where \(\phi_i\) enforces a primacy effect, scales the amount of
 learning based on the serial position of the studied item according to
 
-\begin{equation}\protect\hypertarget{eq-8}{}{ 
+\begin{equation}\protect\hypertarget{eq-8}{}{
 \phi_i = \phi_se^{-\phi_d(i-1)} + 1
 }\label{eq-8}\end{equation}
 
@@ -631,7 +631,7 @@ drifted some amount back toward its pre-experimental state and set the
 state of context at the start of retrieval according to following, with
 \(\rho\) calculated as specified above:
 
-\begin{equation}\protect\hypertarget{eq-9}{}{ 
+\begin{equation}\protect\hypertarget{eq-9}{}{
 c_{start} = \rho_{N+1}c_N + \beta_{start}c_0
 }\label{eq-9}\end{equation}
 
@@ -639,7 +639,7 @@ At each recall attempt, the current state of context is used as a cue to
 attempt the retrieval of some studied item. An activation \(a\) is
 solicited for each item according to:
 
-\begin{equation}\protect\hypertarget{eq-10}{}{ 
+\begin{equation}\protect\hypertarget{eq-10}{}{
 a = M^{CF}c
 }\label{eq-10}\end{equation}
 

@@ -10,7 +10,7 @@ book:
     - 00_Introduction.md
     - 01_Classic_CMR.md
     - 02_Instance_CMR.md
-    - 03_Methods.md
+    - 03_Evaluation_Approach.md
     - 04_Baseline_Comparison.md
     - 05_Variable_List_Lengths.md
     - 06_Item_Repetitions.md

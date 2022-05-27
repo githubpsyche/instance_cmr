@@ -33,7 +33,7 @@ cmr_spec = [
 
 
 @jitclass(cmr_spec)
-class Classic_CMR:
+class Prototype_CMR:
     def __init__(self, item_count, presentation_count, parameters):
 
         # store initial parameters
@@ -57,14 +57,14 @@ class Classic_CMR:
         self.context = np.zeros(item_count + 2)
         self.context[0] = 1
         self.preretrieval_context = self.context
+        self.recall = np.zeros(item_count, int32)
         self.retrieving = False
         self.recall_total = 0
-        self.recall = np.zeros(item_count, int32)
 
         # predefine primacy weighting vectors
         self.primacy_weighting = (
-            parameters["primacy_scale"]
-            * np.exp(-parameters["primacy_decay"] * np.arange(presentation_count))
+            self.primacy_scale
+            * np.exp(-self.primacy_decay * np.arange(presentation_count))
             + 1
         )
 
@@ -105,7 +105,7 @@ class Classic_CMR:
 
         # first pre-experimental or initial context is retrieved
         if len(experience) == len(self.mfc):
-            context_input = np.dot(experience, self.mfc)
+            context_input = self.activations(experience, use_mfc=True)
             context_input /= np.sqrt(
                 np.sum(np.square(context_input))
             )  # norm to length 1
@@ -115,17 +115,15 @@ class Classic_CMR:
 
         # new context is sum of context and input, modulated by rho to have len 1 and some drift_rate
         rho = np.sqrt(
-            1
-            + np.square(min(drift_rate, 1.0))
-            * (np.square(self.context * context_input) - 1)
-        ) - (min(drift_rate, 1.0) * (self.context * context_input))
-        self.context = (rho * self.context) + (min(drift_rate, 1.0) * context_input)
+            1 + np.square(min(drift_rate, 1.0)) * (np.square(self.context * context_input) - 1)
+        ) - (drift_rate * (self.context * context_input))
+        self.context = (rho * self.context) + (drift_rate * context_input)
 
     def activations(self, probe, use_mfc=False):
         if use_mfc:
-            return np.dot(probe, self.mfc) + 10e-7
+            return np.dot(probe, self.mfc)
         else:
-            return np.dot(probe, self.mcf) + 10e-7
+            return np.dot(probe, self.mcf)
 
     def outcome_probabilities(self):
 
