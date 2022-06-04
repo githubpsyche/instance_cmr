@@ -1,8 +1,9 @@
 import numpy as np
 from numba import float64, int32, boolean
 from numba.experimental import jitclass
+lb = np.finfo(float).eps
 
-cmr_spec = [
+base_cmr_spec = [
     ("item_count", int32),
     ("encoding_drift_rate", float64),
     ("delay_drift_rate", float64),
@@ -31,9 +32,8 @@ cmr_spec = [
     ("items", float64[:, ::1]),
 ]
 
-
-@jitclass(cmr_spec)
-class Prototype_CMR:
+@jitclass(base_cmr_spec)
+class Base_CMR:
     def __init__(self, item_count, presentation_count, parameters):
 
         # store initial parameters
@@ -97,8 +97,7 @@ class Prototype_CMR:
             self.update_context(self.encoding_drift_rate, experiences[i])
             self.mfc += self.learning_rate * np.outer(self.context, experiences[i]).T
             self.mcf += self.primacy_weighting[self.encoding_index] * np.outer(
-                self.context, experiences[i]
-            )
+                self.context, experiences[i])
             self.encoding_index += 1
 
     def update_context(self, drift_rate, experience):
@@ -115,7 +114,7 @@ class Prototype_CMR:
 
         # new context is sum of context and input, modulated by rho to have len 1 and some drift_rate
         rho = np.sqrt(
-            1 + np.square(min(drift_rate, 1.0)) * (np.square(self.context * context_input) - 1)
+            1 + np.square(drift_rate) * (np.square(self.context * context_input) - 1)
         ) - (drift_rate * (self.context * context_input))
         self.context = (rho * self.context) + (drift_rate * context_input)
 
@@ -128,30 +127,20 @@ class Prototype_CMR:
     def outcome_probabilities(self):
 
         self.probabilities[0] = min(
-            self.stop_probability_scale
-            * np.exp(self.recall_total * self.stop_probability_growth),
-            1.0 - ((self.item_count - self.recall_total) * 10e-7),
+            self.stop_probability_scale * np.exp(self.recall_total * self.stop_probability_growth),
+            1.0 - ((self.item_count - self.recall_total) * lb),
         )
-        self.probabilities[1:] = 10e-7
+        self.probabilities[1:] = lb
         self.probabilities[self.recall[: self.recall_total] + 1] = 0
 
-        if self.probabilities[0] < (
-            1.0 - ((self.item_count - self.recall_total) * 10e-7)
-        ):
+        if self.probabilities[0] < (1.0 - ((self.item_count - self.recall_total) * lb)):
 
-            # measure the activation for each item; already recalled items have zero activation
             activation = self.activations(self.context)
-            activation[self.recall[: self.recall_total]] = 0
-
             if np.sum(activation) > 0:
-
-                # power sampling rule
                 activation = np.power(activation, self.choice_sensitivity)
-
-                # normalized result downweighted by stop prob is probability of choosing each item
-                self.probabilities[1:] = (
-                    (1 - self.probabilities[0]) * activation / np.sum(activation)
-                )
+                activation[activation==0] = lb
+                activation[self.recall[:self.recall_total]] = 0
+                self.probabilities[1:] = (1 - self.probabilities[0]) * activation / np.sum(activation)
 
         return self.probabilities
 
@@ -176,11 +165,9 @@ class Prototype_CMR:
 
             # the current state of context is used as a retrieval cue
             # we compute outcome probabilities and make choice based on distribution
-            outcome_probabilities = self.outcome_probabilities()
-            if np.any(outcome_probabilities[1:]):
-                choice = np.sum(
-                    np.cumsum(outcome_probabilities) < np.random.rand(), dtype=int32
-                )
+            self.outcome_probabilities()
+            if np.any(self.probabilities[1:]):
+                choice = np.sum(np.cumsum(self.probabilities) < np.random.rand(), dtype=np.int32)
             else:
                 choice = 0
 

@@ -1,10 +1,9 @@
-# export
-
 import numpy as np
 from numba import float64, int32, boolean
 from numba.experimental import jitclass
+lb = np.finfo(float).eps
 
-single_icmr_spec = [
+dual_icmr_spec = [
     ("item_count", int32),
     ("encoding_drift_rate", float64),
     ("start_drift_rate", float64),
@@ -31,16 +30,18 @@ single_icmr_spec = [
     ("context_weighting", float64[::1]),
     ("all_weighting", float64[::1]),
     ("probabilities", float64[::1]),
-    ("memory", float64[:, ::1]),
+    ("mfc", float64[:, ::1]),
+    ("mcf", float64[:, ::1]),
     ("encoding_index", int32),
     ("items", float64[:, ::1]),
-    ("norm", float64[::1]),
-    ("learning_order", int32)
+    ("norm_mfc", float64[::1]),
+    ("norm_mcf", float64[::1]),
+    ("learn_first", boolean),
 ]
 
 
-@jitclass(single_icmr_spec)
-class Single_ICMR:
+@jitclass(dual_icmr_spec)
+class Dual_ICMR:
     def __init__(self, item_count, presentation_count, parameters):
 
         # store initial parameters
@@ -59,7 +60,7 @@ class Single_ICMR:
         self.choice_sensitivity = parameters["choice_sensitivity"]
         self.context_sensitivity = parameters["context_sensitivity"]
         self.feature_sensitivity = parameters["feature_sensitivity"]
-        self.learning_order = parameters["learning_order"]
+        self.learn_first = parameters["learn_first"]
 
         # at the start of the list context is initialized with a state
         # orthogonal to the pre-experimental context associated with the set of items
@@ -91,35 +92,46 @@ class Single_ICMR:
         self.delay_context_input[-1] = 1
 
         # initialize memory
-        # we now conceptualize it as a pairing of two stores Mfc and Mcf respectivelysee
+        # we now conceptualize it as a pairing of two stores Mfc and Mcf respectively
         # representing feature-to-context and context-to-feature associations
-        mfc = np.eye(item_count, item_count + 2, 1) * (1 - self.learning_rate)
-        mcf = np.ones((item_count, item_count)) * self.shared_support
+        mfc_pre = np.eye(item_count, item_count + 2, 1) * (1 - self.learning_rate)
+        mcf_pre1 = np.eye(item_count, item_count) * self.item_support
+        mcf_pre2 = np.ones((item_count, item_count)) * self.shared_support
         for i in range(item_count):
-            mcf[i, i] = self.item_support
-        mcf = np.hstack((np.zeros((item_count, 1)), mcf,  np.zeros((item_count, 1))))
-        self.memory = np.zeros((item_count + presentation_count, item_count * 2 + 4))
-        self.memory[:item_count,] = np.hstack((mfc, mcf))
+            mcf_pre2[i, i] = self.item_support
+        mcf_pre1 = np.hstack((np.zeros((item_count, 1)), mcf_pre1,  np.zeros((item_count, 1))))
+        mcf_pre2 = np.hstack((np.zeros((item_count, 1)), mcf_pre2,  np.zeros((item_count, 1))))
+        self.mfc = np.zeros((item_count + presentation_count, item_count * 2 + 4))
+        self.mfc[:item_count,] = np.hstack((mfc_pre, mcf_pre1))
+        self.mcf = np.zeros((item_count + presentation_count, item_count * 2 + 4))
+        self.mcf[:item_count,] = np.hstack((mfc_pre, mcf_pre2))
 
-        self.norm = np.zeros(item_count + presentation_count)
-        self.norm[:item_count] = np.sqrt(np.sum(np.square(self.memory[0])))
-        self.norm[item_count:] = np.sqrt(2)
+        self.norm_mfc = np.zeros(item_count + presentation_count)
+        self.norm_mcf = np.zeros(item_count + presentation_count)
+        self.norm_mfc[:item_count] = np.sqrt(np.sum(np.square(self.mfc[0])))
+        self.norm_mfc[item_count:] = np.sqrt(2)
+        self.norm_mcf[:item_count] = np.sqrt(np.sum(np.square(self.mcf[0])))
+        self.norm_mcf[item_count:] = np.sqrt(2)
         self.encoding_index = item_count
-        self.items = np.hstack((np.eye(item_count, item_count + 2, 1), np.zeros((item_count, item_count+2))))
+        self.items = np.hstack(
+            (np.eye(item_count, item_count + 2, 1), np.zeros((item_count, item_count + 2)),)
+        )
 
     def experience(self, experiences):
 
         for i in range(len(experiences)):
-            self.update_context(self.encoding_drift_rate, self.memory[self.encoding_index])
-            self.memory[self.encoding_index] = experiences[i]
-            self.memory[self.encoding_index, self.item_count+2:] = self.context
+            self.mfc[self.encoding_index] = experiences[i]
+            self.mcf[self.encoding_index] = experiences[i]
+            self.update_context(self.encoding_drift_rate, self.mfc[self.encoding_index])
+            self.mfc[self.encoding_index, self.item_count + 2 :] = self.context
+            self.mcf[self.encoding_index, self.item_count + 2 :] = self.context
             self.encoding_index += 1
 
     def update_context(self, drift_rate, experience):
 
         # first pre-experimental or initial context is retrieved
         if len(experience) == self.item_count * 2 + 4:
-            context_input = self.echo(experience)[self.item_count + 2 :]
+            context_input = self.echo_mfc(experience)[self.item_count + 2 :]
             context_input = context_input / np.sqrt(
                 np.sum(np.square(context_input))
             )  # norm to length 1
@@ -134,31 +146,66 @@ class Single_ICMR:
         self.context = (rho * self.context) + (drift_rate * context_input)
         self.context = self.context / np.sqrt(np.sum(np.square(self.context)))
 
-    def echo(self, probe):
+    def echo_mfc(self, probe):
+        return np.dot(self.activations_mfc(probe), self.mfc[: self.encoding_index])
 
-        return np.dot(self.activations(probe), self.memory[:self.encoding_index])
+    def echo_mcf(self, probe):
+        return np.dot(self.activations_mcf(probe), self.mcf[: self.encoding_index])
 
-    def activations(self, probe, probe_norm=1.0):
+    def activations_mfc(self, probe, probe_norm=1.0):
 
-        activation = np.dot(self.memory[: self.encoding_index], probe) / (
-            self.norm[: self.encoding_index] * probe_norm
+        activation = np.dot(self.mfc[: self.encoding_index], probe) / (
+            self.norm_mfc[: self.encoding_index] * probe_norm
         )
 
         # weight activations based on whether probe contains item or contextual features or both
         if np.any(probe[: self.item_count + 2]):  # if probe is an item feature cue as during contextual retrieval
-            if self.learning_order == 0:
+            if not self.learn_first:
                 activation = np.power(activation, self.feature_sensitivity)
-            if np.any(probe[self.item_count + 2:]):  # if probe is (also) a contextual cue as during item retrieval
+            if np.any(
+                probe[self.item_count + 2 :]
+            ):  # if probe is (also) a contextual cue as during item retrieval
                 # both mfc and mcf weightings, see below
                 activation *= self.all_weighting[: self.encoding_index]
             else:
                 # mfc weightings - scale by gamma for each experimental trace
                 activation *= self.item_weighting[: self.encoding_index]
-            if self.learning_order == 1:
+            if not self.learn_first:
                 activation = np.power(activation, self.feature_sensitivity)
         else:
             # mcf weightings - scale by primacy/attention function based on experience position
-            if self.learning_order == 0:
+            if not self.learn_first:
+                activation *= self.context_weighting[: self.encoding_index]
+                activation = np.power(activation, self.context_sensitivity)
+            else:
+                activation = np.power(activation, self.context_sensitivity)
+                activation *= self.context_weighting[: self.encoding_index]
+
+        return activation
+
+    def activations_mcf(self, probe, probe_norm=1.0):
+
+        activation = np.dot(self.mcf[: self.encoding_index], probe) / (
+            self.norm_mcf[: self.encoding_index] * probe_norm
+        )
+
+        # weight activations based on whether probe contains item or contextual features or both
+        if np.any(probe[: self.item_count + 2]):  # if probe is an item feature cue as during contextual retrieval
+            if not self.learn_first:
+                activation = np.power(activation, self.feature_sensitivity)
+            if np.any(
+                probe[self.item_count + 2 :]
+            ):  # if probe is (also) a contextual cue as during item retrieval
+                # both mfc and mcf weightings, see below
+                activation *= self.all_weighting[: self.encoding_index]
+            else:
+                # mfc weightings - scale by gamma for each experimental trace
+                activation *= self.item_weighting[: self.encoding_index]
+            if not self.learn_first:
+                activation = np.power(activation, self.feature_sensitivity)
+        else:
+            # mcf weightings - scale by primacy/attention function based on experience position
+            if not self.learn_first:
                 activation *= self.context_weighting[: self.encoding_index]
                 activation = np.power(activation, self.context_sensitivity)
             else:
@@ -170,28 +217,24 @@ class Single_ICMR:
     def outcome_probabilities(self):
 
         self.probabilities[0] = min(
-            self.stop_probability_scale
-            * np.exp(self.recall_total * self.stop_probability_growth),
-            1.0 - ((self.item_count - self.recall_total) * 10e-7),
+            self.stop_probability_scale * np.exp(self.recall_total * self.stop_probability_growth),
+            1.0 - ((self.item_count - self.recall_total) * lb),
         )
-        self.probabilities[1:] = 10e-7
+        self.probabilities[1:] = lb
         self.probabilities[self.recall[: self.recall_total] + 1] = 0
 
-        if self.probabilities[0] < (
-            1.0 - ((self.item_count - self.recall_total) * 10e-7)
-        ):
+        if self.probabilities[0] < (1.0 - ((self.item_count - self.recall_total) * lb)):
 
             # measure the activation for each item; already recalled items have zero activation
             activation_cue = np.hstack((np.zeros(self.item_count + 2), self.context))
-            activation = self.echo(activation_cue)[1 : self.item_count + 1]
-            activation[self.recall[: self.recall_total]] = 0
+            activation = self.echo_mcf(activation_cue)[1:self.item_count + 1]
 
             # recall probability is a function of activation
             if np.sum(activation) > 0:
                 activation = np.power(activation, self.choice_sensitivity)
-                self.probabilities[1:] = (
-                    (1 - self.probabilities[0]) * activation / np.sum(activation)
-                )
+                activation[activation==0] = lb
+                activation[self.recall[:self.recall_total]] = 0
+                self.probabilities[1:] = (1 - self.probabilities[0]) * activation / np.sum(activation)
 
         return self.probabilities
 
@@ -217,11 +260,9 @@ class Single_ICMR:
             # the current state of context is used as a retrieval cue to
             # attempt recall of a studied item compute outcome probabilities
             # and make choice based on distribution
-            outcome_probabilities = self.outcome_probabilities()
-            if np.any(outcome_probabilities[1:]):
-                choice = np.sum(
-                    np.cumsum(outcome_probabilities) < np.random.rand(), dtype=np.int32
-                )
+            self.outcome_probabilities()
+            if np.any(self.probabilities[1:]):
+                choice = np.sum(np.cumsum(self.probabilities) < np.random.rand(), dtype=np.int32)
             else:
                 choice = 0
 
@@ -231,9 +272,11 @@ class Single_ICMR:
                 self.retrieving = False
                 self.context = self.preretrieval_context
                 break
+
             self.recall[self.recall_total] = choice - 1
             self.recall_total += 1
             self.update_context(self.recall_drift_rate, self.items[choice - 1])
+            
         return self.recall[: self.recall_total]
 
     def force_recall(self, choice=None):
