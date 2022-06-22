@@ -10,7 +10,7 @@ Prototype-based models conceptualize abstraction as a process enacted during enc
 Connectionist models such as the multilayer perceptron are typically examples of prototype-based models [@jamieson2018instance].
 Instead of being stored as separate records in memory, learning examples presented to a connectionist model each update a prototypical pattern of weights that eventually map memory probes to responses.
 
-Instance-based models do store learning exampls as separate records in memory.
+Instance-based models do store learning examples as separate records in memory.
 The model architecture was originally identified to help understand how category learning might be possible without explicit storage of so-called abstract ideas [@hintzman1984minerva; @hintzman1986schema; @hintzman1988judgments].
 Instance-based models posit that memory encoding primarily involves accumulating a record of every experience as separate traces in memory.
 Abstraction over stored instances later occurs at retrieval rather than during encoding, and unfolds through comparison of a memory cue with each instance stored in memory.

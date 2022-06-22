@@ -118,7 +118,3 @@ dmypy.json
 # quarto
 /.quarto/
 /_book/
-
-# obsidian
-/.obsidian/
-/notes/

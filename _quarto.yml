@@ -16,8 +16,9 @@ book:
     - 06_Item_Repetitions.md
     - 07_Discussion.md
     - references.md
+    - ../../reports/subjectwise_model_evaluation/Subjectwise_Model_Evaluation_Dual_Store_Murdock1962.ipynb
 
-bibliography: references.bib
+bibliography: ../references.bib
 csl: apa.csl
 
 format:

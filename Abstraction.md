@@ -1,0 +1,4 @@
+A central task of memory is to relate features of current experience with relevant and useful information from past experience; however, stored information relevant to a probe is often distributed across multiple learning episodes.
+To account for our ability to retrieve this information, memory models often specify some mechanism for abstraction -- selective generalization across recurrent features of past experience [@yee2019abstraction].
+Abstraction involves identifying and highlighting features common across experiential episodes while disregarding or suppressing more idiosyncratic properties.
+Since this capacity is central to how memory systems retrieve relevant information from stored experience, much work has explored how humans carry it out.
