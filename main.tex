@@ -5,7 +5,8 @@
 %
 \documentclass[
   letterpaper,
-  DIV=11]{article}
+]{article}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -35,18 +36,21 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={An Instance-Based Account of Context Maintenance and Retrieval},
-  colorlinks=true,
-  linkcolor={blue},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
-\usepackage{longtable,booktabs,array}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -69,10 +73,6 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
@@ -96,6 +96,7 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
 \usepackage{setspace}
 \onehalfspacing
 %\doublespacing
@@ -105,12 +106,31 @@
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
-\renewcommand*\figurename{Figure}
-\renewcommand*\tablename{Table}
-}
-\AtBeginDocument{%
-\renewcommand*\listfigurename{List of Figures}
-\renewcommand*\listtablename{List of Tables}
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
 }
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
@@ -120,11 +140,30 @@
 \makeatother
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
-\@ifpackageloaded{subfig}{}{\usepackage{subfig}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={An Instance-Based Account of Context Maintenance and Retrieval},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{An Instance-Based Account of Context Maintenance and Retrieval}
 \author{Jordan B. Gunn\\
@@ -140,6 +179,7 @@ Nashville, TN 37235\\
 
 \begin{document}
 \maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable, interior hidden, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 
 In retrieved-context accounts of memory search like the Context
 Maintenance and Retrieval (CMR) model (Polyn et al., 2009),
@@ -171,6 +211,29 @@ elucidate a broader collection of memory phenomena.
 \section{Instance and Prototype Accounts of
 Abstraction}\label{instance-and-prototype-accounts-of-abstraction}}
 
+%% SMP adding some text here to develop some ideas %%
+- Our goal is to compare and contrast connectionist and instance-based approaches to models of human memory. 
+  - What we mean by connectionist, this includes neural networks in the PDP tradition, but also linear associative networks (some cites)
+  - What we mean by instance-based, this includes... (some cites)
+- Both approaches are fundamentally representational, or attribute-based (Polyn chapter).
+  - Both types of models define vector spaces as representational layers.
+  - Both types of models assume that when an item is studied or presented, this is simulated by activating the item's representation on a particular layer.
+- The two approaches diverge most substantially in their implementation of a learning event. 
+  - In both models, a learning event involves the creation or modification of associative structures that store information about the particulars of that event. 
+  - Both types of models use matrices to define these associations, but these matrices operate in different ways.
+  - In connectionist models, associative matrices allow different representational layers to influence one another. These associative matrices are of a fixed size, usually containing an element for each pairwise combination of units in the two communicating layers (all-to-all connectivity). The learning event involves adjusting the strength of these associative connections.
+    - Why these models are referred to as 'prototype' models. If multiple learning events involve repeated encounters with the same item, this involves adjusting a common set of associative connections.
+    - For example, in the semantic memory model of Rogers et al. (Rumelhart cites too), a connectionist network is created that represents different animals and plants. The network is trained to learn multiple facts about a given organism, with separate learning events conveying different facts, e.g. "canary can sing", and "canary can fly". A single prototypical canary representation is activated for each learning event, and over the course of learning the network strengthens the associative connections linking canary to each of its features.
+    - Trying to get to the point about abstraction: Here, a form of abstraction operates during learning. By the end of learning, the prototypical canary representation has a variety of associated features. 
+    
+  - In instance-based models, each learning event is stored separately in memory.
+    - Could describe a hypothetical instance-based model learning about canaries, or could refer to something specific about Jamieson model.
+    - Here, a form of abstraction operates during retrieval. 
+  
+- The two approaches also differ in their retrieval dynamics.
+
+%% end of SMP scratch space
+
 A central task of memory is to relate features of current experience
 with relevant and useful information from past experience; however,
 stored information relevant to a probe is often distributed across
@@ -184,6 +247,7 @@ Since this capacity is central to how memory systems retrieve relevant
 information from stored experience, much work has explored how humans
 carry it out.
 
+% introducing distinction between prototype and instance based models
 Depending on how they characterize the process of abstraction, memory
 models can often be categorized as prototype- or instance-based.
 Prototype-based models conceptualize abstraction as a process enacted
@@ -404,8 +468,8 @@ prototype-based memory models in other literatures.
 Retrieval}\label{the-prototype-based-account-of-context-maintenance-and-retrieval}}
 
 Retrieved context theories explain memory search in terms of
-interactions between between two representations across experience: one
-of temporal context (a context layer, \(C\)) and another of features of
+interactions between two representations across experience: one of
+temporal context (a context layer, \(C\)) and another of features of
 studied items (an item layer, \(F\)). While this paper introduces an
 instance-based account of these interactions, we here specify a variant
 of the original prototype-based context maintenance and retrieval (CMR)
@@ -415,7 +479,7 @@ between context and item features by storing a discrete record of each
 experience in memory for later inspection. In contrast, PrototypeCMR
 maintains a simplified neural network whose connection weights
 accumulate a center of tendency representation reflecting context and
-item interactions across experience.
+item interactions across experiences.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1797}}
@@ -423,7 +487,7 @@ item interactions across experience.
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1953}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4766}}@{}}
 \caption{Parameters and structures specifying CMR}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Structure Type
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -433,9 +497,9 @@ Name
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Description
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Structure Type
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -445,7 +509,7 @@ Name
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Description
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Architecture & & & \\
 & \(C\) & temporal context & A recency-weighted average of encoded
@@ -478,7 +542,7 @@ similarity-driven activation \\
 probability over output position \\
 & \({\theta}_{r}\) & stop probability growth & Rate of increase in stop
 probability over output position \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{initial-state}{%
@@ -510,18 +574,18 @@ M^{CF}_{pre(ij)} = \begin{cases} \begin{alignedat}{2} 1 - \delta \text{, if } i=
        \end{alignedat} \end{cases}
 }\label{eq-2}\end{equation}
 
-Like \(\gamma\) with respect to \(M^{FC}\), the \(\delta\) parameter
-controls the contribution of pre-experimental context-to-feature
-associations relative to experimentally acquired ones. Since
-context-to-feature associations organizes the competition of items for
-retrieval, the \(\alpha\) parameter specifies a uniform baseline extent
-to which items support one another in that competition.
+Like \(\gamma\) for \(M^{FC}\), the \(\delta\) parameter controls the
+contribution of pre-experimental context-to-feature associations
+relative to experimentally acquired ones. Since context-to-feature
+associations organize the competition of items for retrieval, the
+\(\alpha\) parameter specifies a uniform baseline extent to which items
+support one another in that competition.
 
 Context is initialized with a state orthogonal to any of those
-pre-experimentally associated with an relevant item feature. Feature
+pre-experimentally associated with a relevant item feature. Feature
 representations corresponding to items are also assumed to be
-orthonormal with respect to one another such that each unit on \(F\)
-corresponds to one item.
+orthonormal to one another such that each unit on \(F\) corresponds to
+one item.
 
 \hypertarget{encoding-phase}{%
 \subsection{Encoding Phase}\label{encoding-phase}}
@@ -540,7 +604,7 @@ c^{IN}_{i} = M^{FC}f_{i}
 and normalized to have length 1. Context is updated based on this input
 according to:
 
-\begin{equation}\protect\hypertarget{eq-4}{}{ 
+\begin{equation}\protect\hypertarget{eq-4}{}{
 c_i = \rho_ic_{i-1} + \beta_{enc} c_{i}^{IN}
 }\label{eq-4}\end{equation}
 
@@ -548,7 +612,7 @@ with \(\beta\) (for encoding we use \(\beta_{enc}\)) shaping the rate of
 contextual drift with each new experience, and \(\rho\) enforces the
 length of \(c_i\) to 1 according to:
 
-\begin{equation}\protect\hypertarget{eq-5}{}{ 
+\begin{equation}\protect\hypertarget{eq-5}{}{
 \rho_i = \sqrt{1 + \beta^2\left[\left(c_{i-1} \cdot c^{IN}_i\right)^2 - 1\right]} - \beta\left(c_{i-1} \cdot
 c^{IN}_i\right)
 }\label{eq-5}\end{equation}
@@ -569,7 +633,7 @@ and
 where \(\phi_i\) enforces a primacy effect, scales the amount of
 learning based on the serial position of the studied item according to
 
-\begin{equation}\protect\hypertarget{eq-8}{}{ 
+\begin{equation}\protect\hypertarget{eq-8}{}{
 \phi_i = \phi_se^{-\phi_d(i-1)} + 1
 }\label{eq-8}\end{equation}
 
@@ -587,19 +651,19 @@ prototypical summary of the item's temporal contextual associations in
 
 To help the model account for the primacy effect, we assume that between
 the encoding and retrieval phase of a task, the content of \(C\) has
-drifted some amoung back toward its pre-experimental state and set the
+drifted some amount back toward its pre-experimental state and set the
 state of context at the start of retrieval according to following, with
 \(\rho\) calculated as specified above:
 
-\begin{equation}\protect\hypertarget{eq-9}{}{ 
+\begin{equation}\protect\hypertarget{eq-9}{}{
 c_{start} = \rho_{N+1}c_N + \beta_{start}c_0
 }\label{eq-9}\end{equation}
 
 At each recall attempt, the current state of context is used as a cue to
-attempt retrieval of some studied item. An activation \(a\) is solicited
-for each item according to:
+attempt the retrieval of some studied item. An activation \(a\) is
+solicited for each item according to:
 
-\begin{equation}\protect\hypertarget{eq-10}{}{ 
+\begin{equation}\protect\hypertarget{eq-10}{}{
 a = M^{CF}c
 }\label{eq-10}\end{equation}
 
@@ -625,7 +689,7 @@ P(i) = (1-P(stop))\frac{a^{\tau}_i}{\sum_{k}^{N}a^{\tau}_k}
 supported items: exponentiating a large activation and a small
 activation by a large value of \(\tau\) widens the difference between
 those activations, making recall of the most activated item even more
-likely. Small values of \(\tau\) can alternatively driven recall
+likely. Small values of \(\tau\) can alternatively drive recall
 likelihoods of differentially activated items toward one another.
 
 If an item is recalled, then that item is reactivated on \(F\), and its
@@ -691,7 +755,7 @@ where required by the constraints of the instance-based architecture.
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4766}}@{}}
 \caption{Parameters and structures specifying
 InstanceCMR}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Structure Type
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -701,9 +765,9 @@ Name
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Description
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Structure Type
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -713,7 +777,7 @@ Name
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Description
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Architecture & & & \\
 & \(M\) & memory & Array of accumulated memory traces \\
@@ -745,7 +809,7 @@ similarity-driven activation \\
 probability over output position \\
 & \({\theta}_{r}\) & stop probability growth & Rate of increase in stop
 probability over output position \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{model-architecture}{%
@@ -891,7 +955,7 @@ P(i) = (1-P(stop))\frac{f_{rec}}{\sum_{k}^{N}f_{rec}}
 
 If an item is recalled, then that item is reactivated on \(F\), and its
 contextual associations retrieved for integration into context again
-according to Eq.~\ref{eq-19}. Context is updated again based on this
+according to (\textbf{Eq-19?}). Context is updated again based on this
 input (using \(\beta_{rec}\) instead of \(\beta_{enc}\)) and used to cue
 a successive recall attempt. This process continues until recall stops.
 
@@ -1066,7 +1130,7 @@ parameter configuration that maximized the likelihood of recorded recall
 sequences. We obtained a unique optimal parameter configuration for each
 unique participant and each considered model variant. To measure the
 goodness-of-fit for each parameter configuration and corresponding
-model, Figure~\ref{fig-murdokafits} plots the log-likelihood of each
+model, \textbf{?@fig-MurdOkaFits} plots the log-likelihood of each
 participant's recall sequences given each model variant's corresponding
 optimized parameter configuration. The distribution of log-likelihood
 scores between participants for the PrototypeCMR and InstanceCMR model
@@ -1076,7 +1140,7 @@ recall performance across the dataset.
 
 \begin{figure}
 
-\begin{minipage}[c]{1.00\linewidth}
+\begin{minipage}[c]{\linewidth}
 
 {\centering 
 
@@ -1086,14 +1150,14 @@ recall performance across the dataset.
 
 \end{minipage}%
 \newline
-\begin{minipage}[c]{1.00\linewidth}
+\begin{minipage}[c]{\linewidth}
 
 {\centering 
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 & InstanceCMR & PrototypeCMR \\
-\midrule
+\midrule()
 \endhead
 count & 72 & 72 \\
 mean & 297.128 & 296.249 \\
@@ -1103,7 +1167,7 @@ min & 156.753 & 150.988 \\
 50\% & 299.741 & 299.763 \\
 75\% & 331.797 & 331.946 \\
 max & 387.742 & 390.806 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 }
@@ -1122,7 +1186,7 @@ model variant the optimal parameter configuration maximizing the
 likelihood of the entire dataset rather than participant-by-participant.
 Using each fitted model variant, we simulated 1000 unique free recall
 trials and measured summary statistics from the result.
-Figure~\ref{fig-murdokasummary} plots for each model against the
+\textbf{?@fig-MurdOkaSummary} plots for each model against the
 corresponding statistics collected over the dataset how recall
 probability varies as a function of serial position, how the probability
 of recalling an item first varies as a function of serial position, and
@@ -1178,7 +1242,7 @@ differential evolution optimization the parameter configuration
 maximizing the likelihood assigned by the model to each recall sequence
 in all relevant trials, whether with list length of 20 or 30 or 40. The
 log-likelihoods of the data corresponding to each participant and model
-variant are plotted in \textbf{?@fig-murd62fits}, with a table providing
+variant are plotted in \textbf{?@fig-Murd62Fits}, with a table providing
 summary statistics. The distribution of log-likelihood scores between
 participants for the PrototypeCMR and InstanceCMR model variants only
 marginally differ, suggesting little meaningful difference between
@@ -1188,7 +1252,7 @@ performance across variable list lengths.
 
 \begin{figure}
 
-\begin{minipage}[c]{1.00\linewidth}
+\begin{minipage}[c]{\linewidth}
 
 {\centering 
 
@@ -1198,14 +1262,14 @@ performance across variable list lengths.
 
 \end{minipage}%
 \newline
-\begin{minipage}[c]{1.00\linewidth}
+\begin{minipage}[c]{\linewidth}
 
 {\centering 
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 & InstanceCMR & PrototypeCMR \\
-\midrule
+\midrule()
 \endhead
 count & 15 & 15 \\
 mean & 5300.61 & 5281.17 \\
@@ -1215,7 +1279,7 @@ min & 4475.97 & 4381.06 \\
 50\% & 5300.33 & 5280.25 \\
 75\% & 5620.59 & 5591.8 \\
 max & 6382.21 & 6375.89 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 }
@@ -1241,7 +1305,7 @@ function of serial lag from the previously recalled item were computed
 based on simulation of free recall data using the model variants with
 their fitted parameters. Separate analyses simulated trials with study
 list lengths of 20 and of 30 items, with summary statistics tracked
-separately. Figure~\ref{fig-murd62summary} plots the results of these
+separately. \textbf{?@fig-Murd62Summary} plots the results of these
 simulations against statistics from corresponding subsets of the
 behavioral data from (Murdock Jr, 1962), with unique sets of plots for
 both model variants and list lengths. As with previous analyses, we
@@ -1251,31 +1315,35 @@ statistics across the considered data to similar extents.
 
 \begin{figure}
 
-\subfloat[PrototypeCMR]{\label{fig-PrototypeCMR}%
-\begin{minipage}[t]{1.00\linewidth}
-\raisebox{-\height}{
+\begin{minipage}[t]{\linewidth}
 
 {\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{./figures/cmr_summary_murdock1962.pdf}
 
 }
 
-}\end{minipage}%
 }
+
+\subcaption{\label{fig-PrototypeCMR}PrototypeCMR}
+\end{minipage}%
 \newline
-\subfloat[InstanceCMR]{\label{fig-InstanceCMR}%
-\begin{minipage}[t]{1.00\linewidth}
-\raisebox{-\height}{
+\begin{minipage}[t]{\linewidth}
 
 {\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{./figures/icmr_summary_murdock1962.pdf}
 
 }
 
-}\end{minipage}%
 }
+
+\subcaption{\label{fig-InstanceCMR}InstanceCMR}
+\end{minipage}%
 
 \caption{\label{fig-murd62summary}Comparison of summary statistics
 between each model against observed data (Murdock Jr, 1962)}
@@ -1360,7 +1428,6 @@ investigation.
 
 \begin{figure}
 
-\subfloat[PrototypeCMR]{\label{fig-cmr_repeffect}%
 \begin{minipage}[c]{0.50\linewidth}
 
 {\centering 
@@ -1369,10 +1436,9 @@ investigation.
 
 }
 
+\subcaption{\label{fig-cmr_repeffect}PrototypeCMR}
 \end{minipage}%
-}
 %
-\subfloat[InstanceCMR]{\label{fig-icmr_repeffect}%
 \begin{minipage}[c]{0.50\linewidth}
 
 {\centering 
@@ -1381,8 +1447,8 @@ investigation.
 
 }
 
+\subcaption{\label{fig-icmr_repeffect}InstanceCMR}
 \end{minipage}%
-}
 
 \caption{\label{fig-repeffect}Course of effect of successive item
 repetitions on recall probability, by model, using parameters fitted
@@ -1425,7 +1491,7 @@ participant to identify the parameter configuration maximizing the
 likelihood of observed recall sequences given the considered model,
 considering all conditions of the dataset. The distribution of data
 log-likelihoods given each fitted model and participant are plotted in
-Figure~\ref{fig-lohnasfits}, with median values for each model variant
+\textbf{?@fig-LohnasFits}, with median values for each model variant
 highlighted. Similarly to previous analyses, these value distributions
 were found largely similar. The distribution of log-likelihood scores
 between participants for the PrototypeCMR and InstanceCMR model variants
@@ -1450,9 +1516,9 @@ study with similar degrees of success.
 {\centering 
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 & InstanceCMR & PrototypeCMR \\
-\midrule
+\midrule()
 \endhead
 count & 35 & 35 \\
 mean & 1676.3 & 1668.35 \\
@@ -1462,7 +1528,7 @@ min & 914.375 & 856.293 \\
 50\% & 1686.97 & 1698.98 \\
 75\% & 1955.37 & 1957.65 \\
 max & 2752.36 & 2751.88 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 }
@@ -1500,44 +1566,50 @@ effects of repetition spacing on later item recall.
 
 \begin{figure}
 
-\subfloat[PrototypeCMR]{\label{fig-cmr_spacing}%
 \begin{minipage}[t]{0.33\linewidth}
-\raisebox{-\height}{
 
 {\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{./figures/cmr_spacing.png}
 
 }
 
-}\end{minipage}%
 }
+
+\subcaption{\label{fig-cmr_spacing}PrototypeCMR}
+\end{minipage}%
 %
-\subfloat[InstanceCMR]{\label{fig-icmr_spacing}%
 \begin{minipage}[t]{0.33\linewidth}
-\raisebox{-\height}{
 
 {\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{./figures/icmr_spacing.png}
 
 }
 
-}\end{minipage}%
 }
+
+\subcaption{\label{fig-icmr_spacing}InstanceCMR}
+\end{minipage}%
 %
-\subfloat[Data]{\label{fig-data_spacing}%
 \begin{minipage}[t]{0.33\linewidth}
-\raisebox{-\height}{
 
 {\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{./figures/data_spacing.png}
 
 }
 
-}\end{minipage}%
 }
+
+\subcaption{\label{fig-data_spacing}Data}
+\end{minipage}%
 
 \caption{\label{fig-lohnas_spacing}Comparison of predicted recall
 probability as function of item repetition spacing between each model
@@ -1879,5 +1951,6 @@ and why?} Taylor \& Francis.
 
 \end{CSLReferences}
 
-\end{document}
 
+
+\end{document}
