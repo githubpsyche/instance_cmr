@@ -6,7 +6,7 @@ Here we investigate whether our prototype- and instance-based implementations of
 
 For each model variant and each participant, we found through differential evolution optimization the parameter configuration maximizing the likelihood assigned by the model to each recall sequence in all relevant trials, whether with list length of 20 or 30 or 40. The log-likelihoods of the data corresponding to each participant and model variant are plotted in [Figure @fig-Murd62Fits], with a table providing summary statistics. The distribution of log-likelihood scores between participants for the PrototypeCMR and InstanceCMR model variants only marginally differ, suggesting little meaningful difference between variants in their effectiveness predicting recall sequences, even when using a single parameter configuration per participant to account for performance across variable list lengths.
 
-::: {#fig-murdokafits layout-nrow=2 layout-valign="center"}
+::: {#fig-Murd62Fits layout-nrow=2 layout-valign="center"}
 
 ![](figures/individual_murdock1962.pdf)
 

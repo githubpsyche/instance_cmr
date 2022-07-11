@@ -30,7 +30,7 @@
 We conclude that prototype- and Instance- CMR can similarly account for free recall performance in pure lists.
 
 ## Variable List Lengths
-[[05_Variable_List_Length]]
+[[instance_cmr/05_Variable_List_Lengths]]
 
 1. A significant achievement of PrototypeCMR is its ability to account for apparent differences in subjects' performance across list lengths using a single parameter configuration.
 2. To confirm that dynamics in instance-based models scale similarly as list length increases, we compare the performance of InstanceCMR to PrototypeCMR on the Murdock (1962) dataset where participants recalled lists of lengths 20, 30, and 40.
@@ -114,62 +114,62 @@ archived, reviews results from 5-31 of my subtle contrasts comparisons
 I'm still deciding how I want this "landing page" to be organized.
 [[Planning the ICMR Landing Page]]
 
-Sean's feedback from the 14th...
-[[Sean Feedback 2022-06-14]]
+Sean's feedback from the 14th
+[[instance_cmr - Sean Feedback 2022-06-14]]
 
 #### Relevant Library Maintenance
 Leaving this stuff in a specific report template will make generating novel reports harder and clutter the reports in general.
-[[Refactor Novel Functions From Subjectwise Model Comparison Template]]
+[[reports.subjectwise_model_evaluation.template - Refactor Novel Functions From Subjectwise Model Comparison Template]]
 
 In particular I want to make sure this analysis works within my pipeline for both control lists and lists with item repetitions.
-[[Organize and clarify tests for lag contiguity analysis]]
+[[analyses.lag_crp - Organize and clarify tests for lag contiguity analysis]]
 
 Small differences in implementations matter for log-likelihoods, but not in theory. So I should prune away variants that don't matter.
-[[Clean Up and Document Relevant and Defunct Model Implementations]]
+[[models - Clean Up and Document Relevant and Defunct Model Implementations]]
 
 This will make it easier to test and develop my code. Maybe.
-[[Don't leave numba jit on by default]]
+[[general - Don't leave numba jit on by default]]
 
 #### Benchmark Model Comparison
 Current draft doesn't have current results or anything from the current result pipeline.
 [[issues/Update ICMR Results Section]]
 
 I need to figure out if comparing single and dual stack models is worth doing in the paper. But that's just a result to include for Sean, right?
-[[Integrate Single Stack and Two Stack ICMR Evaluations]]
+[[instance_cmr - Integrate Single Stack and Two Stack ICMR Evaluations]]
 
 #### Variable List Lengths
 Might want to use selective model evaluation technique to improve visualization of Murdock 1962 fitting results. Will have to compare and contrast using appendix, probably. And may have to update results pipeline to select my preferred fitting routine.
-[[Document Selective Likelihood-Based Model Evaluation]]
+[[fitting - Document Selective Likelihood-Based Model Evaluation]]
 
 #### Repetition Effects
 Ideally I'd have the spacing and neighbor contiguity analyses from the Lohnas Dataset and apply them both to the Howard & Kahana 2005 dataset and the original dataset.
-[[Finish implementation and test for neighbor contiguity analysis]]
-[[Extend plot_rpl to support different designs than Lohnas 2014 Dataset]]
-[[Add jitter or other control to make default plot_rpl figure cleaner]]
+[[analyses.neighbor_contiguity - Finish implementation and test for neighbor contiguity analysis]]
+[[analyses.recall_probability_by_lag - Extend plot_rpl to support different designs than Lohnas 2014 Dataset]]
+[[analyses.recall_probability_by_lag - Add jitter or other control to make default plot_rpl figure cleaner]]
 
 #### Deficient Repetition Contiguity
 I might want to argue that ICMR can more easily account for this effect.
 
 I have a lot of versions of this thing and need to make sure I'm working with the right one.
-[[add convincing tests for repetition contiguity analysis]]
+[[analyses.repetition_contiguity - add convincing tests for repetition contiguity analysis]]
 
 This might already exist. But I'm unsure if it even works.
-[[Implement plot repetition contiguity function]]
+[[analyses.repetition_contiguity - Implement plot repetition contiguity function]]
 
 I believe this is mostly just the control analysis stuff that lets me compare model predictions about recall rates of items at same serial positions that are not repetitions.
-[[Finish refactoring assets from Measuring_Repetition_Effects notebook]]
+[[analyses - Finish refactoring assets from Measuring_Repetition_Effects notebook]]
 
 #### Semantic Effects
 I might want to argue that ICMR can more easily accomodate semantic organizational effects. But do I really?
 [[issues/Implement and Test Instance SCMR]]
 [[issues/Semantic CRP for Report Templates]]
-[[issues/consistently track item level features in my simulate_DF_from_events and related code]]
+[[datasets - consistently track item level features in my simulate_DF_from_events and related code]]
 
 #### Extras
 Extras that I generated that might not belong in the paper anymore...
 Parameter Shifting Experiments
 
 I might find that model comparison is cleaner with this parameter gone...
-[[Clear Up Outcome of Evaluation of Delay Drift Rate Parameter]]
+[[models - Clear Up Outcome of Evaluation of Delay Drift Rate Parameter]]
 
 ## Archive

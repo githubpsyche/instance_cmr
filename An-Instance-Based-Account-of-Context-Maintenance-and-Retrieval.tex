@@ -5,7 +5,8 @@
 %
 \documentclass[
   letterpaper,
-]{article}
+  DIV=11,
+  numbers=noendperiod]{scrreport}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -97,10 +98,11 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{setspace}
-\onehalfspacing
+\KOMAoption{captions}{tableheading}
+%\usepackage{setspace}
+%\onehalfspacing
 %\doublespacing
-\usepackage{arxiv}
+%\usepackage{arxiv}
 \makeatletter
 \makeatother
 \makeatletter
@@ -182,13 +184,7 @@ Nashville, TN 37235\\
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, boxrule=0pt, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}\fi
-
-\bookmarksetup{startatroot}
-
-\hypertarget{section}{%
-\chapter{}\label{section}}
-
+\begin{abstract}
 In retrieved-context accounts of memory search like the Context
 Maintenance and Retrieval (CMR) model (Polyn et al., 2009),
 representations of studied items in a free recall experiment are
@@ -214,6 +210,8 @@ CMR, evaluate conditions under which the specifications might behave
 differently, and explore the model's capacity for integration with
 existing instance-based models to elucidate a broader collection of
 memory phenomena.
+\end{abstract}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, boxrule=0pt, breakable, sharp corners]}{\end{tcolorbox}}\fi
 
 \bookmarksetup{startatroot}
 
@@ -1034,13 +1032,10 @@ between models.
 
 When exploring how effectively the model accounts for qualitative
 benchmark phenomena in free recall performance such as the temporal
-contiguity and serial position effects, we optimized parameter
-configurations and evaluated performance across all subjects in the
-considered dataset, except where otherwise noted. For direct comparison
-of the log-likelihoods of recall sequences, however, we search for
-optimal parameters and perform comparison at the subject level,
-considering distributions of log-likelihood values calculated between
-subjects when contrasting model versions.
+contiguity and serial position effects, we search for optimal parameters
+and perform comparison at the individual subject level, considering
+distributions of log-likelihood values calculated between subjects when
+contrasting model versions.
 
 \hypertarget{summary-statistics}{%
 \subsection{Summary Statistics}\label{summary-statistics}}
@@ -1094,13 +1089,14 @@ helps characterize the temporal organization of recall across trials.
 We start by comparing how our prototype- and instance-based
 implementations of CMR account for behavior in a classic experiment
 where each item is presented just once per study phase. For these
-simulations, we used the dataset reported by Murdock \& Okada (1970).
-Each of 72 undergraduates performed 20 trials with study lists each
-consisting of 20 unique words visually presented at either 60 or 120
-words per minute. Given a particular subject, words were unique both
-within and across trials, and randomly selected from the Toronto Word
-Pool (Friendly et al., 1982), a widely-used collection of high frequency
-nouns, adjectives, and verbs.
+simulations, we used the subset of the PEERS (Penn Electrophysiology of
+Encoding and Retrieval Study) dataset reported by by Healey \& Kahana
+(2014). Each of 126 people between the ages of 17 and 30 performed 112
+trials with study lists each consisting of 16 unique words. Given a
+particular subject, words were unique within trials and controlled to ,
+and randomly selected from the Toronto Word Pool (Friendly et al.,
+1982), a widely-used collection of high frequency nouns, adjectives, and
+verbs.
 
 While the major focus of the original report by Murdock \& Okada (1970)
 was to investigate inter-response times in single-trial free recall,
@@ -1125,13 +1121,13 @@ parameter configuration that maximized the likelihood of recorded recall
 sequences. We obtained a unique optimal parameter configuration for each
 unique participant and each considered model variant. To measure the
 goodness-of-fit for each parameter configuration and corresponding
-model, \textbf{?@fig-MurdOkaFits} plots the log-likelihood of each
-participant's recall sequences given each model variant's corresponding
-optimized parameter configuration. The distribution of log-likelihood
-scores between participants for the PrototypeCMR and InstanceCMR model
-variants only marginally differ, suggesting little meaningful difference
-between variants in their effectiveness accounting for participant
-recall performance across the dataset.
+model, Figure~\ref{fig-HealeyKahana2014Fits} plots the log-likelihood of
+each participant's recall sequences given each model variant's
+corresponding optimized parameter configuration. The distribution of
+log-likelihood scores between participants for the PrototypeCMR and
+InstanceCMR model variants only marginally differ, suggesting little
+meaningful difference between variants in their effectiveness accounting
+for participant recall performance across the dataset.
 
 \begin{figure}
 
@@ -1139,7 +1135,7 @@ recall performance across the dataset.
 
 {\centering 
 
-\includegraphics{./figures/individual_murdock1970.pdf}
+\includegraphics{./figures/individual_HealyKahana2014.pdf}
 
 }
 
@@ -1149,19 +1145,36 @@ recall performance across the dataset.
 
 {\centering 
 
-\begin{longtable}[]{@{}lrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0886}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2025}}@{}}
 \toprule()
-& InstanceCMR & PrototypeCMR \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+ICMR\_2\_0\_0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+ICMR\_2\_0\_1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+ICMR\_2\_1\_0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+ICMR\_2\_1\_1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+PrototypeCMR
+\end{minipage} \\
 \midrule()
 \endhead
-count & 72 & 72 \\
-mean & 297.128 & 296.249 \\
-std & 52.7989 & 52.8859 \\
-min & 156.753 & 150.988 \\
-25\% & 258.206 & 260.956 \\
-50\% & 299.741 & 299.763 \\
-75\% & 331.797 & 331.946 \\
-max & 387.742 & 390.806 \\
+count & 126 & 126 & 126 & 126 & 126 \\
+mean & 590.88 & 590.963 & 591.522 & 589.806 & 590.049 \\
+std & 95.2457 & 95.1915 & 95.6988 & 95.847 & 95.2172 \\
+min & 321.343 & 321.254 & 314.304 & 317.624 & 318.623 \\
+25\% & 524.942 & 525.175 & 526.318 & 520.045 & 521.627 \\
+50\% & 603.222 & 602.753 & 603.735 & 602.716 & 602.197 \\
+75\% & 656.658 & 655.863 & 658.4 & 655.447 & 653.205 \\
+max & 796.37 & 795.881 & 797.061 & 795.547 & 796.672 \\
 \bottomrule()
 \end{longtable}
 
@@ -1169,9 +1182,9 @@ max & 387.742 & 390.806 \\
 
 \end{minipage}%
 
-\caption{\label{fig-murdokafits}Distribution of log-likelihood scores of
-recall sequences exhibited by each subject under each considered model
-across list-lengths (Murdock \& Okada, 1970)}
+\caption{\label{fig-HealeyKahana2014Fits}Distribution of log-likelihood
+scores of recall sequences exhibited by each subject under each
+considered model across list-lengths (Healey \& Kahana, 2014)}
 
 \end{figure}
 
@@ -1181,8 +1194,8 @@ model variant the optimal parameter configuration maximizing the
 likelihood of the entire dataset rather than participant-by-participant.
 Using each fitted model variant, we simulated 1000 unique free recall
 trials and measured summary statistics from the result.
-\textbf{?@fig-MurdOkaSummary} plots for each model against the
-corresponding statistics collected over the dataset how recall
+Figure~\ref{fig-HealeyKahana2014Summary} plots for each model against
+the corresponding statistics collected over the dataset how recall
 probability varies as a function of serial position, how the probability
 of recalling an item first varies as a function of serial position, and
 how the conditional recall probabability of an item varies as a function
@@ -1197,12 +1210,69 @@ experimental conditions.
 
 \begin{figure}
 
-{\centering \includegraphics{./figures/overall_murdock1970.pdf}
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_PrototypeCMR_ll16_spc.pdf}
 
 }
 
-\caption{\label{fig-murdokasummary}Comparison of summary statistics
-between each model against observed data (Murdock \& Okada, 1970)}
+\end{minipage}%
+%
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_PrototypeCMR_ll16_crp.pdf}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_PrototypeCMR_ll16_pfr.pdf}
+
+}
+
+\end{minipage}%
+\newline
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_ICMR_2_1_1_ll16_spc.pdf}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_ICMR_2_1_1_ll16_crp.pdf}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[c]{0.33\linewidth}
+
+{\centering 
+
+\includegraphics{./figures/HealyKahana2014_ICMR_2_1_1_ll16_pfr.pdf}
+
+}
+
+\end{minipage}%
+
+\caption{\label{fig-HealeyKahana2014Summary}Comparison of summary
+statistics between each model against observed data (Healey \& Kahana,
+2014){]}}
 
 \end{figure}
 
@@ -1239,10 +1309,10 @@ differential evolution optimization the parameter configuration
 maximizing the likelihood assigned by the model to each recall sequence
 in all relevant trials, whether with list length of 20 or 30 or 40. The
 log-likelihoods of the data corresponding to each participant and model
-variant are plotted in \textbf{?@fig-Murd62Fits}, with a table providing
-summary statistics. The distribution of log-likelihood scores between
-participants for the PrototypeCMR and InstanceCMR model variants only
-marginally differ, suggesting little meaningful difference between
+variant are plotted in Figure~\ref{fig-Murd62Fits}, with a table
+providing summary statistics. The distribution of log-likelihood scores
+between participants for the PrototypeCMR and InstanceCMR model variants
+only marginally differ, suggesting little meaningful difference between
 variants in their effectiveness predicting recall sequences, even when
 using a single parameter configuration per participant to account for
 performance across variable list lengths.
@@ -1283,7 +1353,7 @@ max & 6382.21 & 6375.89 \\
 
 \end{minipage}%
 
-\caption{\label{fig-murdokafits}Distribution of log-likelihood scores of
+\caption{\label{fig-Murd62Fits}Distribution of log-likelihood scores of
 recall sequences exhibited by each subject under each considered model
 across list-lengths (Murdock Jr, 1962)}
 
@@ -1812,6 +1882,11 @@ A. (2008). Effects of adult aging on utilization of temporal and
 semantic associations during free and serial recall. \emph{Memory \&
 Cognition}, \emph{36}(5), 947--956.
 
+\leavevmode\vadjust pre{\hypertarget{ref-healey2014memory}{}}%
+Healey, M. K., \& Kahana, M. J. (2014). Is memory search governed by
+universal principles or idiosyncratic strategies? \emph{Journal of
+Experimental Psychology: General}, \emph{143}(2), 575.
+
 \leavevmode\vadjust pre{\hypertarget{ref-healey2016four}{}}%
 Healey, M. K., \& Kahana, M. J. (2016). A four-component model of
 age-related memory change. \emph{Psychological Review}, \emph{123}(1),
@@ -1957,8 +2032,8 @@ pp. 1257--1265). Taylor \& Francis.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{section-1}{%
-\chapter{}\label{section-1}}
+\hypertarget{section}{%
+\chapter{}\label{section}}
 
 \begin{figure}
 
@@ -1966,7 +2041,7 @@ pp. 1257--1265). Taylor \& Francis.
 
 {\centering 
 
-\includegraphics{../../reports/subjectwise_model_evaluation/reports/subjectwise_model_evaluation/results/individual_Murdock1962.pdf}
+\includegraphics{./figures/individual_Murdock1962.pdf}
 
 }
 
